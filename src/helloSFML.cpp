@@ -1,3 +1,4 @@
+// Group member: Sree Sai, Yue Sun
 #include <SFML/Graphics.hpp>
 
 int main()
