@@ -10,13 +10,16 @@
 
 #include <string>
 #include <iostream>
-#include <SFML/Graphics.hpp>
+#include "gameWindow.hpp"
 
-class Card {
+
+class Card{
 private:
     std::string rank_;
     std::string suit_;
     bool visible_;
+  
+    
     
 public:
     Card(std::string rank, std::string suit) {
@@ -53,28 +56,35 @@ public:
     }
     
     
-    void drawCard(){
-        
-        sf::RectangleShape endRect;
+    void drawCard(Card card){
+        sf::RectangleShape rectCard;
         sf::Vector2f endRectPosition(1400,970);
-        endRect.setPosition(endRectPosition);
-        endRect.setOutlineThickness(6);
-        endRect.setSize(sf::Vector2f(220,75));
-        endRect.setFillColor(sf::Color :: Black);
+        rectCard.setPosition(endRectPosition);
+        rectCard.setOutlineThickness(6);
+        rectCard.setSize(sf::Vector2f(220,75));
+        rectCard.setFillColor(sf::Color :: Black);
 
-        
         sf::Font introFont;
         if(!introFont.loadFromFile("Fonts/IntroFont.otf")){
             
         }
         
-        sf::Text headingText;
-        headingText.setPosition(sf::Vector2f(800,100));
-        headingText.setFont(introFont);
-        headingText.setString("BlackJack");
-        headingText.setColor(sf::Color(145,0,0));
-        headingText.setCharacterSize(400);
-        headingText.Italic;
+        sf::Text rankText;
+        rankText.setPosition(sf::Vector2f(800,1000));
+        rankText.setFont(introFont);
+        rankText.setString(card.getRank());
+        rankText.setColor(sf::Color(145,0,0));
+        rankText.setCharacterSize(400);
+        rankText.Italic;
+        
+        sf::Text suitText;
+        suitText.setPosition(sf::Vector2f(800,100));
+        suitText.setFont(introFont);
+        suitText.setString(card.getSuit());
+        suitText.setColor(sf::Color(145,0,0));
+        suitText.setCharacterSize(400);
+        suitText.Italic;
+        
     }
     
     

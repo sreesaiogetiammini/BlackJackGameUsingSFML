@@ -7,7 +7,7 @@ int main()
 {
     // test card & deck
     //testHand();
-    testDeck();
+   // testDeck();
 //    // create the window
 //    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
 //
@@ -36,5 +36,7 @@ int main()
 //        window.display();
 //    }
 
+    
+    runGameWindow();
     return 0;
 }
