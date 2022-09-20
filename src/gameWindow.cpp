@@ -25,7 +25,16 @@ void runGameWindow(){
     sf::Text quitText = *drawQuitText();
     sf::RectangleShape playTextRect = *drawPlayRect();
     sf::RectangleShape quitTextRect = *drawQuitRect();
-
+    
+    enum screens
+    {
+        IntroScreen,
+        GameScreen,
+        WinnerScreen,
+        LoserScreen
+    };
+    
+    screens e = IntroScreen;
     sf::Text textSf ;
     while (blackJackWindow.isOpen())
     {
@@ -38,14 +47,14 @@ void runGameWindow(){
             {
                 blackJackWindow.close();
             }
-            blackJackWindow.clear(sf::Color(0,65,0));
-            blackJackWindow.draw(gameTitle);
-            blackJackWindow.draw(playerText);
-            blackJackWindow.draw(delearText);
-            blackJackWindow.draw(playTextRect);
-            blackJackWindow.draw(playText);
-            blackJackWindow.draw(quitTextRect);
-            blackJackWindow.draw(quitText);
+            
+            if(e == IntroScreen){
+                introScreen(blackJackWindow);
+            }
+            
+            if(e == GameScreen){
+                gameScreen(blackJackWindow);
+            }
             
             switch (event.type)
             {
@@ -55,7 +64,7 @@ void runGameWindow(){
                     if(yAxis>=970 && yAxis <= 1045){
                         if(xAxis>=900 && xAxis <= 1120){
                             std::cout  << "Play Button Pressed" << std::endl;
-                            moveText(playText);
+                            e = GameScreen;
                         }
 
                         else if(xAxis>=1400 && xAxis <= 1660){
@@ -67,12 +76,31 @@ void runGameWindow(){
                 default:
                 break;
         }
-            
             blackJackWindow.display();
         }
     }
     
     
+}
+
+void introScreen(sf::RenderWindow& window){
+    window.clear(sf::Color(0,65,0));
+    window.draw(*drawGameTitle());
+    window.draw(*drawPlayerText());
+    window.draw(*drawDelearText());
+    window.draw(*drawPlayRect());
+    window.draw(*drawPlayText());
+    window.draw(*drawQuitRect());
+    window.draw(*drawQuitText());
+}
+
+void gameScreen(sf::RenderWindow& window)
+{
+    window.clear(sf::Color(0,65,0));
+    window.draw(*drawGameTitle());
+    window.draw(*drawPlayerText());
+    window.draw(*drawDelearText());
+    window.draw(*drawCard());
 }
 
 sf::Text* drawText(const std::string& text,const sf::Vector2f& textPosition,const sf::Color& textColor ,const size_t& characterSize){
@@ -138,10 +166,11 @@ sf::RectangleShape* drawRectangle(const sf::Vector2f& rectanglePosition, const s
 }
 
 sf::RectangleShape* drawCard(){
-    sf::Vector2f cardPosition(800,100);
-    sf::Vector2f cardSize(800,100);
-    sf::Color cardColor(145,0,0);
-    return drawRectangle(cardPosition, cardSize, cardColor);
+    sf::Vector2f cardPosition(1000,700);
+    sf::Vector2f cardSize(400,700);
+    sf::Color cardColor(sf::Color::White);
+    sf::RectangleShape card = drawRectangle(cardPosition, cardSize, cardColor);
+    
 }
 
 sf::RectangleShape* drawPlayRect(){
