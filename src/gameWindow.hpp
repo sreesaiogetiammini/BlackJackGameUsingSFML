@@ -30,4 +30,6 @@ sf::RectangleShape* drawPlayRect();
 sf::RectangleShape* drawQuitRect();
 void moveRectangle(sf::RectangleShape& rectangle);
 void moveText(sf::Text& text);
+void introScreen(sf::RenderWindow& window);
+void gameScreen(sf::RenderWindow& window);
 #endif /* gameWindow_hpp */
