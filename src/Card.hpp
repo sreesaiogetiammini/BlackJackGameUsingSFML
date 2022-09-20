@@ -9,21 +9,22 @@
 #define Card_hpp
 
 #include <string>
+#include <iostream>
 
 class Card {
 private:
-    char rank_;
+    std::string rank_;
     std::string suit_;
     bool visible_;
     
 public:
-    Card(unsigned short rank, std::string suit, bool visible) {
+    Card(std::string rank, std::string suit) {
         rank_ = rank;
         suit_ = suit;
-        visible_ = visible;
+        visible_ = true;
     }
     
-    unsigned short getRank() const {
+    std::string getRank() const {
         return rank_;
     }
     
@@ -34,10 +35,24 @@ public:
     void setVisible(bool visible) {
         visible_ = visible;
     }
+    
+    void printCard() {
+        std::string suit;
+        if (suit_ == "spades") {
+            suit = "♠︎";
+        } else if (suit_ == "hearts") {
+            suit = "♥︎";
+        } else if (suit_ == "clubs") {
+            suit = "♣︎";
+        } else if (suit_ == "diamonds") {
+            suit = "♦︎";
+        }
+        std::cout << "(" << rank_ << ", " << suit << ") " ;
+        //std::cout << "____\n" << "|" << rank_ << "  |\n" << "| " << suit << " |\n" << "|__" << rank_ << "|\n" ;
+    }
 };
 
-bool compareCard(Card& a, Card& b) {
-    return a.getRank() < b.getRank();
-}
+// TODO: A last, compare suits
+bool compareCard(Card& a, Card& b);
 
 #endif /* Card_hpp */
