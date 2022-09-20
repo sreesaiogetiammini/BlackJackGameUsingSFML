@@ -1,13 +1,10 @@
 // Group member: Sree Sai, Yue Sun
 #include <SFML/Graphics.hpp>
-#include "testHand.hpp"
-#include "testDeck.hpp"
+#include "gameWindow.hpp"
 
 int main()
 {
-    // test card & deck
-    //testHand();
-   // testDeck();
+
 //    // create the window
 //    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
 //

@@ -8,7 +8,6 @@
 #ifndef gameWindow_hpp
 #define gameWindow_hpp
 
-#pragma once
 #include <stdio.h>
 #include <iostream>
 #include <SFML/Graphics.hpp>

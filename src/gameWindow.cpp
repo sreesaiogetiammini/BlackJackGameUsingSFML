@@ -5,7 +5,6 @@
 //  Created by Sree Sai on 9/20/22.
 //
 
-#pragma once
 #include "gameWindow.hpp"
 
 
