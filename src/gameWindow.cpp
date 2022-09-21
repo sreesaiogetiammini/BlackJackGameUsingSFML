@@ -7,6 +7,7 @@
 
 #include "gameWindow.hpp"
 #include "Card.hpp"
+#include "Blackjack.hpp"
 
 
 using namespace std;
@@ -26,6 +27,7 @@ void runGameWindow(){
     sf::RectangleShape playTextRect = *drawPlayRect();
     sf::RectangleShape quitTextRect = *drawQuitRect();
     
+    
     enum screens
     {
         IntroScreen,
@@ -38,6 +40,7 @@ void runGameWindow(){
     sf::Text textSf ;
     while (blackJackWindow.isOpen())
     {
+        Blackjack game;
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (blackJackWindow.pollEvent(event))
@@ -49,20 +52,27 @@ void runGameWindow(){
             }
             
             if(e == IntroScreen){
-                introScreen(blackJackWindow);
+                introScreen(blackJackWindow);            
             }
             
             if(e == GameScreen){
-                gameScreen(blackJackWindow);
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::H))
-                {
-                    std::cout  << "Hit Button Pressed" << std::endl;
+                gameScreen(blackJackWindow,player.getCards(),dealer.getCards());
+                // play or hit for player
+                while (player.getScore() < 21) {
+                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+                    {
+                        std::cout  << "Hit Button Pressed" << std::endl;
+                        game.deck_.dealHand(hand);
+                        
+                    }
+                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+                    {
+                        std::cout  << "Stand Button Pressed" << std::endl;
+                        e = StandCircleScreen;
+                        break;
+                    }
                 }
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-                {
-                    std::cout  << "Stand Button Pressed" << std::endl;
-                    e = StandCircleScreen;
-                }
+                // reveal hand and add card for dealer
             }
             if(e==StandCircleScreen){
                 StandScreen(blackJackWindow);
@@ -76,6 +86,9 @@ void runGameWindow(){
                     if(yAxis>=970 && yAxis <= 1045){
                         if(xAxis>=900 && xAxis <= 1120){
                             std::cout  << "Play Button Pressed" << std::endl;
+                            PlayerHand player;
+                            DealerHand dealer;
+                            game.play(player, dealer);
                             e = GameScreen;
                             }
                         else if(xAxis>=1400 && xAxis <= 1660){
@@ -106,12 +119,16 @@ void introScreen(sf::RenderWindow& window){
     window.draw(*drawQuitText());
 }
 
-void gameScreen(sf::RenderWindow& window)
+void gameScreen(sf::RenderWindow& window, vector<Card> playerCard,vector<Card> delearCard)
 {
     window.clear(sf::Color(0,65,0));
     window.draw(*drawGameTitle());
     window.draw(*drawPlayerText());
     window.draw(*drawDelearText());
+    
+    
+    sf::Vector2f cardPosition
+    
     sf::Vector2f cardPosition(700,700);
     sf::Vector2f cardPosition1(650,650);
     window.draw(*drawPlayerCard(cardPosition));
@@ -127,6 +144,9 @@ void gameScreen(sf::RenderWindow& window)
     window.draw(*drawText("♠︎",cardPosition4, sf::Color::Black, 90));
     window.draw(*drawText("♦︎", cardPosition5, sf::Color::Black, 90));
     window.draw(*drawDelearCard());
+    
+    
+    
     window.draw(*drawHitCircle());
     window.draw(*drawHitText());
     window.draw(*drawStandCircle());

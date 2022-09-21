@@ -27,9 +27,9 @@ private:
 //    unsigned long gameNumber; // an auto-increment unique id for a Blackjack object
     
 public:
-    Blackjack(double money) {
+    Blackjack() {
         deck_ = Deck();
-        wallet_ = money;
+        wallet_ = 20;
 //        round = 0;
     }
     
@@ -65,6 +65,23 @@ public:
                 }
             }
         }
+    }
+    
+    void hit(PlayerHand& hand) {
+        std::string handType = "player";
+        if (hand.getClassName() == "DealerHand") {
+            handType = "dealer";
+        }
+        if (handType == "dealer") {
+            while (hand.getScore() < 17) {
+                deck_.dealHand(hand);
+                hand.setScore(calculateScore(hand));
+            }
+        } else {
+            while (hand.getScore() < 17) (
+            game.deck_.dealHand(hand);
+        }
+        
     }
     
     void hitOrStand(PlayerHand& hand) {
@@ -103,11 +120,9 @@ public:
     }
     
     // play the game
-    void play() {
+    void play(PlayerHand& player, DealerHand& dealer) {
         deck_.shuffle();
         // Alternate dealing cards between the player and dealer
-        PlayerHand player;
-        DealerHand dealer;
         for (int i = 0; i < 2; i++) {
             deck_.dealHand(player);
             deck_.dealHand(dealer);

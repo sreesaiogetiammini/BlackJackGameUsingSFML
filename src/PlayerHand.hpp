@@ -15,12 +15,17 @@ class PlayerHand {
 protected:
     // all cards visible
     std::vector<Card> cards_;
+    unsigned short score_;
     
 public:
     PlayerHand(){};
     
     std::vector<Card> getCards() const {
         return cards_;
+    }
+    
+    unsigned short getScore() const {
+        return score_;
     }
     
     // Sort hand in ascending order
@@ -37,6 +42,10 @@ public:
             card.printCard();
         }
         std::cout << std::endl;
+    }
+    
+    void setScore(unsigned short score) {
+        score_ = score;
     }
     
     std::string getClassName() const {
