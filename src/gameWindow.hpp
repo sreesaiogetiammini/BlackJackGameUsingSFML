@@ -22,7 +22,8 @@ sf::Text* drawGameTitle();
 sf::Text* drawDelearText();
 sf::Text* drawText (const std::string& text,const sf::Vector2f& textPosition,const sf::Color& textColor ,const size_t& characterSize);
 sf::RectangleShape* drawRectangle(const sf::Vector2f& rectanglePosition, const sf::Vector2f& rectangularSize, const sf::Color& rectangleFillColor);
-sf::RectangleShape* drawCard();
+sf::RectangleShape* drawPlayerCard(sf::Vector2f& cardPos);
+sf::RectangleShape* drawDelearCard();
 void drawTitleText(sf::RenderWindow& window);
 sf::Text* drawPlayText();
 sf::Text* drawQuitText();
@@ -32,4 +33,15 @@ void moveRectangle(sf::RectangleShape& rectangle);
 void moveText(sf::Text& text);
 void introScreen(sf::RenderWindow& window);
 void gameScreen(sf::RenderWindow& window);
+
+sf::CircleShape* drawCircle(const float& radius,const sf::Vector2f& circlePosition , const sf::Color& circleFillColor);
+sf::CircleShape* drawHitCircle();
+sf::Text* drawHitText();
+sf::Text* drawStandText();
+sf::CircleShape* drawStandCircle();
+
+void playScreen(sf::RenderWindow& window);
+void StandScreen(sf::RenderWindow& window);
+
+
 #endif /* gameWindow_hpp */
