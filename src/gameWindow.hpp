@@ -34,7 +34,7 @@ sf::RectangleShape* drawQuitRect();
 void moveRectangle(sf::RectangleShape& rectangle);
 void moveText(sf::Text& text);
 void introScreen(sf::RenderWindow& window);
-void gameScreen(sf::RenderWindow& window, std::vector<Card> playerCard,std::vector<Card> delearCard);
+//void gameScreen(sf::RenderWindow& window, std::vector<Card> playerCard,std::vector<Card> delearCard);
 
 sf::CircleShape* drawCircle(const float& radius,const sf::Vector2f& circlePosition , const sf::Color& circleFillColor);
 sf::CircleShape* drawHitCircle();

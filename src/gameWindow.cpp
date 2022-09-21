@@ -41,6 +41,8 @@ void runGameWindow(){
     while (blackJackWindow.isOpen())
     {
         Blackjack game;
+        PlayerHand player;
+        DealerHand dealer;
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (blackJackWindow.pollEvent(event))
@@ -56,13 +58,13 @@ void runGameWindow(){
             }
             
             if(e == GameScreen){
-                gameScreen(blackJackWindow,player.getCards(),dealer.getCards());
+                //gameScreen(blackJackWindow,player.getCards(),dealer.getCards());
                 // play or hit for player
                 while (player.getScore() < 21) {
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::H))
                     {
                         std::cout  << "Hit Button Pressed" << std::endl;
-                        game.deck_.dealHand(hand);
+                        //game.deck_.dealHand(hand);
                         
                     }
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -119,39 +121,39 @@ void introScreen(sf::RenderWindow& window){
     window.draw(*drawQuitText());
 }
 
-void gameScreen(sf::RenderWindow& window, vector<Card> playerCard,vector<Card> delearCard)
-{
-    window.clear(sf::Color(0,65,0));
-    window.draw(*drawGameTitle());
-    window.draw(*drawPlayerText());
-    window.draw(*drawDelearText());
-    
-    
-    sf::Vector2f cardPosition
-    
-    sf::Vector2f cardPosition(700,700);
-    sf::Vector2f cardPosition1(650,650);
-    window.draw(*drawPlayerCard(cardPosition));
-    window.draw(*drawPlayerCard(cardPosition1));
-    window.draw(*drawText("K", cardPosition, sf::Color::Black, 90));
-    window.draw(*drawText("1", cardPosition1, sf::Color::Black, 90));
-    sf::Vector2f cardPosition2(700,1200);
-    sf::Vector2f cardPosition3(650,1150);
-    window.draw(*drawText("K", cardPosition2, sf::Color::Black, 90));
-    window.draw(*drawText("1", cardPosition3, sf::Color::Black, 90));
-    sf::Vector2f cardPosition4(700,900);
-    sf::Vector2f cardPosition5(650,850);
-    window.draw(*drawText("♠︎",cardPosition4, sf::Color::Black, 90));
-    window.draw(*drawText("♦︎", cardPosition5, sf::Color::Black, 90));
-    window.draw(*drawDelearCard());
-    
-    
-    
-    window.draw(*drawHitCircle());
-    window.draw(*drawHitText());
-    window.draw(*drawStandCircle());
-    window.draw(*drawStandText());
-}
+//void gameScreen(sf::RenderWindow& window, vector<Card> playerCard,vector<Card> delearCard)
+//{
+//    window.clear(sf::Color(0,65,0));
+//    window.draw(*drawGameTitle());
+//    window.draw(*drawPlayerText());
+//    window.draw(*drawDelearText());
+//
+//
+//
+//
+//    sf::Vector2f cardPosition(700,700);
+//    sf::Vector2f cardPosition1(650,650);
+//    window.draw(*drawPlayerCard(cardPosition));
+//    window.draw(*drawPlayerCard(cardPosition1));
+//    window.draw(*drawText("K", cardPosition, sf::Color::Black, 90));
+//    window.draw(*drawText("1", cardPosition1, sf::Color::Black, 90));
+//    sf::Vector2f cardPosition2(700,1200);
+//    sf::Vector2f cardPosition3(650,1150);
+//    window.draw(*drawText("K", cardPosition2, sf::Color::Black, 90));
+//    window.draw(*drawText("1", cardPosition3, sf::Color::Black, 90));
+//    sf::Vector2f cardPosition4(700,900);
+//    sf::Vector2f cardPosition5(650,850);
+//    window.draw(*drawText("♠︎",cardPosition4, sf::Color::Black, 90));
+//    window.draw(*drawText("♦︎", cardPosition5, sf::Color::Black, 90));
+//    window.draw(*drawDelearCard());
+//
+//
+//
+//    window.draw(*drawHitCircle());
+//    window.draw(*drawHitText());
+//    window.draw(*drawStandCircle());
+//    window.draw(*drawStandText());
+//}
 
 
 void HitScreen(sf::RenderWindow& window)
