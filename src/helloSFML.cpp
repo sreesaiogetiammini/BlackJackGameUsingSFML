@@ -1,10 +1,11 @@
 // Group member: Sree Sai, Yue Sun
 #include <SFML/Graphics.hpp>
 #include "gameWindow.hpp"
+#include "testBlackjack.hpp"
 
 int main()
 {
-
+    testBlackjack();
 //    // create the window
 //    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
 //

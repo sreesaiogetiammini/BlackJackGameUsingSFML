@@ -10,6 +10,7 @@
 
 #include "Card.hpp"
 #include "PlayerHand.hpp"
+#include "Blackjack.hpp"
 
 void testHand() {
     Card card1("A", "spades");
