@@ -10,7 +10,7 @@
 
 
 
-void drawRectangle(sf::RectangleShape rectangle ,sf::Vector2f rectanglePosition, ){
+void drawRectangle(sf::RectangleShape rectangle ,sf::Vector2f rectanglePosition) {
     sf::RectangleShape endRect;
     sf::Vector2f endRectPosition(1400,970);
     endRect.setPosition(endRectPosition);

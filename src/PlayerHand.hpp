@@ -38,6 +38,10 @@ public:
         }
         std::cout << std::endl;
     }
+    
+    std::string getClassName() const {
+        return "PlayerHand";
+    }
 };
 
 class DealerHand : public PlayerHand {
@@ -66,6 +70,10 @@ public:
             card.setVisible(true);
         }
         sortHand();
+    }
+    
+    std::string getClassName() const {
+        return "DealerHand";
     }
 };
 

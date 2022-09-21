@@ -169,7 +169,6 @@ sf::RectangleShape* drawCard(){
     sf::Vector2f cardSize(400,700);
     sf::Color cardColor(sf::Color::White);
     return drawRectangle(cardPosition, cardSize, cardColor);
-    
 }
 
 sf::RectangleShape* drawPlayRect(){
