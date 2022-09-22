@@ -8,6 +8,7 @@
 #include "gameWindow.hpp"
 #include "Card.hpp"
 #include "Blackjack.hpp"
+#include "PlayerHand.hpp"
 
 
 using namespace std;
@@ -18,7 +19,7 @@ void runGameWindow(){
     // create the window
     sf::RenderWindow blackJackWindow(sf::VideoMode::getDesktopMode(), "BlackJack Game",sf::Style::Default);
     blackJackWindow.setFramerateLimit(60);
-
+    
     sf::Text gameTitle = *drawGameTitle();
     sf::Text playerText = *drawPlayerText();
     sf::Text delearText = *drawDelearText();
@@ -26,90 +27,64 @@ void runGameWindow(){
     sf::Text quitText = *drawQuitText();
     sf::RectangleShape playTextRect = *drawPlayRect();
     sf::RectangleShape quitTextRect = *drawQuitRect();
+    sf:: Text hitText = *drawHitText();
+    sf:: Text standText = *drawStandText();
     
     
     enum screens
     {
         IntroScreen,
         GameScreen,
-        StandCircleScreen,
-        LoserScreen
+        HitScreen,
+        StandScreen,
+        ResultScreen
     };
     
+    Blackjack game;
+    PlayerHand player;
+    DealerHand dealer;
+    int count =0;
     screens e = IntroScreen;
     sf::Text textSf ;
     while (blackJackWindow.isOpen())
     {
-        Blackjack game;
-        PlayerHand player;
-        DealerHand dealer;
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (blackJackWindow.pollEvent(event))
         {
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
-            {
                 blackJackWindow.close();
-            }
-            
-            if(e == IntroScreen){
-                introScreen(blackJackWindow);            
-            }
-            
-            if(e == GameScreen){
-                //gameScreen(blackJackWindow,player.getCards(),dealer.getCards());
-                // play or hit for player
-                while (player.getScore() < 21) {
-                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::H))
-                    {
-                        std::cout  << "Hit Button Pressed" << std::endl;
-                        //game.deck_.dealHand(hand);
-                        
-                    }
-                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-                    {
-                        std::cout  << "Stand Button Pressed" << std::endl;
-                        e = StandCircleScreen;
-                        break;
-                    }
-                }
-                // reveal hand and add card for dealer
-            }
-            if(e==StandCircleScreen){
-                StandScreen(blackJackWindow);
-            }
-            
-            switch (event.type)
-            {
-                case sf::Event::MouseButtonPressed:{
-                    size_t xAxis =  sf::Mouse::getPosition(blackJackWindow).x;
-                    size_t yAxis =  sf::Mouse::getPosition(blackJackWindow).y;
-                    if(yAxis>=970 && yAxis <= 1045){
-                        if(xAxis>=900 && xAxis <= 1120){
-                            std::cout  << "Play Button Pressed" << std::endl;
-                            PlayerHand player;
-                            DealerHand dealer;
-                            game.play(player, dealer);
-                            e = GameScreen;
-                            }
-                        else if(xAxis>=1400 && xAxis <= 1660){
-                            std::cout  << "End Button Pressed" << std::endl;
-                            blackJackWindow.close();
-                            }
-                    }
-                    break;
-                }
-                default:
-                break;
         }
-            blackJackWindow.display();
+    
+        if(e == IntroScreen){
+            introScreen(blackJackWindow);
         }
-    }
-    
-    
-}
 
+        if(e==GameScreen){
+            cout << "Came to Game" << endl;
+            gameScreen(blackJackWindow,player,dealer);
+        }
+        
+        if (e==IntroScreen && event.type == sf::Event::MouseButtonReleased){
+            cout << "Came to Mouse Button" << endl;
+                //Get the mouse position:
+                sf::Vector2i mouse = sf::Mouse::getPosition(blackJackWindow);
+                //Map Pixel to Coords:
+                blackJackWindow.mapPixelToCoords(mouse);
+                //Set position of the mouse to the rectangle:
+                if(playText.getGlobalBounds().contains(mouse.x, mouse.y)){
+                    game.play(player, dealer);
+                    e = GameScreen;
+                }
+           }
+            
+        }
+        blackJackWindow.display();
+}
+    
+
+    
 void introScreen(sf::RenderWindow& window){
     window.clear(sf::Color(0,65,0));
     window.draw(*drawGameTitle());
@@ -121,56 +96,59 @@ void introScreen(sf::RenderWindow& window){
     window.draw(*drawQuitText());
 }
 
-//void gameScreen(sf::RenderWindow& window, vector<Card> playerCard,vector<Card> delearCard)
-//{
-//    window.clear(sf::Color(0,65,0));
-//    window.draw(*drawGameTitle());
-//    window.draw(*drawPlayerText());
-//    window.draw(*drawDelearText());
-//
-//
-//
-//
-//    sf::Vector2f cardPosition(700,700);
-//    sf::Vector2f cardPosition1(650,650);
-//    window.draw(*drawPlayerCard(cardPosition));
-//    window.draw(*drawPlayerCard(cardPosition1));
-//    window.draw(*drawText("K", cardPosition, sf::Color::Black, 90));
-//    window.draw(*drawText("1", cardPosition1, sf::Color::Black, 90));
-//    sf::Vector2f cardPosition2(700,1200);
-//    sf::Vector2f cardPosition3(650,1150);
-//    window.draw(*drawText("K", cardPosition2, sf::Color::Black, 90));
-//    window.draw(*drawText("1", cardPosition3, sf::Color::Black, 90));
-//    sf::Vector2f cardPosition4(700,900);
-//    sf::Vector2f cardPosition5(650,850);
-//    window.draw(*drawText("♠︎",cardPosition4, sf::Color::Black, 90));
-//    window.draw(*drawText("♦︎", cardPosition5, sf::Color::Black, 90));
-//    window.draw(*drawDelearCard());
-//
-//
-//
-//    window.draw(*drawHitCircle());
-//    window.draw(*drawHitText());
-//    window.draw(*drawStandCircle());
-//    window.draw(*drawStandText());
-//}
 
-
-void HitScreen(sf::RenderWindow& window)
+void gameScreen(sf::RenderWindow& window,PlayerHand& player,DealerHand& dealer)
 {
     window.clear(sf::Color(0,65,0));
     window.draw(*drawGameTitle());
     window.draw(*drawPlayerText());
     window.draw(*drawDelearText());
-    sf::Vector2f cardPosition(700,700);
-    sf::Vector2f cardPosition1(720,720);
-    window.draw(*drawPlayerCard(cardPosition));
-    window.draw(*drawPlayerCard(cardPosition1));
-    window.draw(*drawDelearCard());
+    if(player.getCards().size()!=0){
+        sf::Vector2f playerCardPosition(700,700);
+        for(size_t i = 0; i<player.getCards().size() ;i++){
+            window.draw(*drawPlayerCard(playerCardPosition));
+            window.draw(*drawText(player.getCards()[i].getRank(), playerCardPosition, sf::Color::Black, 90));
+            playerCardPosition.y = playerCardPosition.y+500;
+            window.draw(*drawText(player.getCards()[i].getRank(), playerCardPosition, sf::Color::Black, 90));
+            playerCardPosition.y = playerCardPosition.y-500;
+            playerCardPosition.x = playerCardPosition.x-75;
+            playerCardPosition.y = playerCardPosition.y-75;
+        }
+    }
+    
+    if(dealer.getCards().size()!=0){
+        sf::Vector2f dealerCardPosition(1800,700);
+        for(size_t i = 0; i<dealer.getCards().size() ;i++){
+            window.draw(*drawDelearCard(dealerCardPosition));
+            window.draw(*drawText(dealer.getCards()[i].getRank(), dealerCardPosition, sf::Color::Black, 90));
+            dealerCardPosition.y = dealerCardPosition.y+500;
+            window.draw(*drawText(dealer.getCards()[i].getRank(), dealerCardPosition, sf::Color::Black, 90));
+            dealerCardPosition.y = dealerCardPosition.y-500;
+            dealerCardPosition.x = dealerCardPosition.x+75;
+            dealerCardPosition.y = dealerCardPosition.y+75;
+        }
+    }
     window.draw(*drawHitCircle());
     window.draw(*drawHitText());
     window.draw(*drawStandCircle());
     window.draw(*drawStandText());
+}
+
+void hitScreen(sf::RenderWindow& window ,PlayerHand& player)
+{
+    cout << "Came to Hit Screen" << endl;
+    if(player.getCards().size()!=0){
+        sf::Vector2f playerCardPosition(700,700);
+        for(size_t i = 0; i<player.getCards().size() ;i++){
+            window.draw(*drawPlayerCard(playerCardPosition));
+            window.draw(*drawText(player.getCards()[i].getRank(), playerCardPosition, sf::Color::Black, 90));
+            playerCardPosition.y = playerCardPosition.y+500;
+            window.draw(*drawText(player.getCards()[i].getRank(), playerCardPosition, sf::Color::Black, 90));
+            playerCardPosition.y = playerCardPosition.y-500;
+            playerCardPosition.x = playerCardPosition.x-75;
+            playerCardPosition.y = playerCardPosition.y-75;
+        }
+    }
 }
 
 
@@ -184,13 +162,10 @@ void StandScreen(sf::RenderWindow& window)
     sf::Vector2f cardPosition1(720,720);
     window.draw(*drawPlayerCard(cardPosition));
     window.draw(*drawPlayerCard(cardPosition1));
-    window.draw(*drawDelearCard());
+//    window.draw(*drawDelearCard());
     window.draw(*drawStandCircle());
     window.draw(*drawStandText());
 }
-
-
-
 
 
 sf::Text* drawText(const std::string& text,const sf::Vector2f& textPosition,const sf::Color& textColor ,const size_t& characterSize){
@@ -278,11 +253,11 @@ sf::RectangleShape* drawPlayerCard(sf::Vector2f& cardPos){
         sf::Color cardColor(sf::Color::White);
         return drawRectangle(cardPosition, cardSize, cardColor);
 }
-sf::RectangleShape* drawDelearCard(){
-    sf::Vector2f cardPosition(1800,700);
+sf::RectangleShape* drawDelearCard(sf::Vector2f& cardPos){
+    //sf::Vector2f cardPosition(1800,700);
     sf::Vector2f cardSize(400,600);
     sf::Color cardColor(sf::Color::White);
-    return drawRectangle(cardPosition, cardSize, cardColor);
+    return drawRectangle(cardPos, cardSize, cardColor);
 }
 
 sf::RectangleShape* drawPlayRect(){
@@ -350,7 +325,3 @@ void moveText(sf::Text& text)
 {
     text.move(0, 0);
 }
-
-
-
-
