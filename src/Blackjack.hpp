@@ -78,29 +78,8 @@ public:
                 hand.setScore(calculateScore(hand));
             }
         } else {
-            while (hand.getScore() < 17) (
-            game.deck_.dealHand(hand);
-        }
-        
-    }
-    
-    void hitOrStand(PlayerHand& hand) {
-        std::string handType = "player";
-        if (hand.getClassName() == "DealerHand") {
-            handType = "dealer";
-        }
-        // dealer must hit if their score < 17
-        if (handType == "dealer") {
-            while (calculateScore(hand) < 17) {
-                deck_.dealHand(hand);
-            }
-        } else {
-            // TODO: show promts, user choose to hit or stand, then update hit
-            bool hit = false;
-            while (calculateScore(hand) < 21 && hit) {
-                deck_.dealHand(hand);
-                // TODO: show promts, user choose to hit or stand, then update hit
-            }
+            deck_.dealHand(hand);
+            hand.setScore(calculateScore(hand));
         }
     }
     
@@ -127,19 +106,9 @@ public:
             deck_.dealHand(player);
             deck_.dealHand(dealer);
         }
-        // player decides to hit or stand
-        hitOrStand(player);
-        dealer.revealHand();
-        hitOrStand(dealer);
-        short res = determineWinner(calculateScore(player), calculateScore(dealer));
-        if (res == 1) {
-            wallet_ += bet_;
-        } else if (res == -1){
-            wallet_ -= bet_;
-        }
-        // TODO: show the result;
     }
 };
 
 
 #endif /* BlackJack_h */
+
