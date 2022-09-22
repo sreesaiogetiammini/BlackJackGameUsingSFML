@@ -43,6 +43,7 @@ sf::Text* drawHitText();
 sf::Text* drawStandText();
 sf::CircleShape* drawStandCircle();
 void playScreen(sf::RenderWindow& window);
-void StandScreen(sf::RenderWindow& window);
+void standScreen(sf::RenderWindow& window,DealerHand& dealer);
+void resultScreen(sf::RenderWindow& window, bool winner,PlayerHand& player,DealerHand& dealer);
 #endif /* gameWindow_hpp */
 
