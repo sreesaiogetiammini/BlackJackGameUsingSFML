@@ -12,6 +12,7 @@
 #include <string>
 #include "Card.hpp"
 #include "PlayerHand.hpp"
+#include "DealerHand.hpp"
 
 class Deck {
 private:
@@ -26,7 +27,7 @@ private:
 public:
     Deck() {
         std::vector<std::string> suits = {"spades", "hearts", "clubs", "diamonds"};
-        std::vector<std::string> ranks = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+        std::vector<std::string> ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
         for (std::string suit: suits) {
             for (std::string rank : ranks) {
                 cards_.push_back(Card(rank, suit));
@@ -37,9 +38,13 @@ public:
     std::vector<Card> getCards() const {
         return cards_;
     }
-
-    // remove the 1st card form deck and add it to the hand
-    void dealHand(PlayerHand& hand) {
+    
+    void dealPlayer(PlayerHand& hand) {
+        hand.addCard(cards_.front());
+        cards_.erase(cards_.begin());
+    }
+    
+    void dealDealer(DealerHand& hand) {
         hand.addCard(cards_.front());
         cards_.erase(cards_.begin());
     }

@@ -14,19 +14,17 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "PlayerHand.hpp"
+#include "DealerHand.hpp"
+#include "Blackjack.hpp"
 
-
+enum screens {
+    IntroScreen,
+    GameScreen,
+    HitScreen,
+    StandScreen,
+    ResultScreen
+};
 void runGameWindow();
-void runExtraGameWindow();
-
-// TODO: no drawTitleText
-void drawTitleText(sf::RenderWindow& window);
-void introScreen(sf::RenderWindow& window);
-void gameScreen(sf::RenderWindow& window,PlayerHand& player,DealerHand& dealer);
-void hitScreen(sf::RenderWindow& window ,PlayerHand& player);
-// TODO: no playScreen
-void playScreen(sf::RenderWindow& window);
-void standScreen(sf::RenderWindow& window,DealerHand& dealer);
-void resultScreen(sf::RenderWindow& window, bool winner,PlayerHand& player,DealerHand& dealer);
+short verifyGameResults(sf::RenderWindow& blackJackWindow,sf::Event& event,PlayerHand& player,DealerHand& dealer,Blackjack game,screens& screen,short& winner);
 #endif /* gameWindow_hpp */
 
