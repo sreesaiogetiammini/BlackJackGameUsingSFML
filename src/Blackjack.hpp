@@ -45,7 +45,6 @@ public:
     
     // hit a card and update the score
     void hit(PlayerHand& hand) {
-        std::cout << "enter hit\n";
         std::string handType = "player";
         if (hand.getClassName() == "DealerHand") {
             handType = "dealer";

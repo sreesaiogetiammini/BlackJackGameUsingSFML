@@ -69,7 +69,7 @@ void runGameWindow(){
             if (player.getScore() > 21) {
                 cout << "You lose!!\n";
 //                screen = ResultScreen;
-            } else {
+            } else if (!stand){
                 if (event.type == sf::Event::MouseButtonReleased) {
                     if (checkMousePosition(blackJackWindow, hitCircle) && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                         game.hit(player); // why hit so many cards?
@@ -77,12 +77,10 @@ void runGameWindow(){
                     if (checkMousePosition(blackJackWindow, standCircle) && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                         // hit button disappear
                         stand = true;
-                        break;
                     }
                 }
-            }
-            if (stand) {
-                cout << " stand now\n";
+            } else {
+                cout << dealer.getScore() << endl;
                 game.hit(dealer);
             }
 //            screen = ResultScreen;
