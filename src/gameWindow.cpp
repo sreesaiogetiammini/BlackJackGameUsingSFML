@@ -28,6 +28,7 @@ void runGameWindow(){
     sf::RectangleShape quitRect = *drawQuitRect();
 //    sf::Text hitText = *drawHitText();
 //    sf::Text standText = *drawStandText();
+    bool stand = false;
     
     enum screens {
         IntroScreen,
@@ -63,26 +64,41 @@ void runGameWindow(){
 
         if(screen == GameScreen){
             gameScreen(blackJackWindow, player, dealer);
-            cout << "Came to Game" << endl;
             sf::CircleShape hitCircle = *drawHitCircle();
             sf::CircleShape standCircle = *drawStandCircle();
-            if (event.type == sf::Event::MouseButtonReleased) {
-                if (checkMousePosition(blackJackWindow, hitCircle)) {
-                    game.hit(player); // why hit so many cards?
-                } else if (checkMousePosition(blackJackWindow, standCircle)) {
-                    // hit button disappear
+            if (player.getScore() > 21) {
+                cout << "You lose!!\n";
+//                screen = ResultScreen;
+            } else {
+                if (event.type == sf::Event::MouseButtonReleased) {
+                    if (checkMousePosition(blackJackWindow, hitCircle) && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                        game.hit(player); // why hit so many cards?
+                    }
+                    if (checkMousePosition(blackJackWindow, standCircle) && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                        // hit button disappear
+                        stand = true;
+                        break;
+                    }
                 }
             }
-            if(game.calculateScore(player) > 21) {
-                cout << "Game is Lost" << endl;
-            } else {
-                screen = GameScreen;
+            if (stand) {
+                cout << " stand now\n";
+                game.hit(dealer);
             }
+//            screen = ResultScreen;
         }
-
-        if(screen == HitScreen){
-            cout << "Came to Hit Screen" << endl;
-            hitScreen(blackJackWindow, player);
+        
+        if (screen == ResultScreen) {
+            drawBackground(blackJackWindow);
+            short res = game.determineWinner(player.getScore(), dealer.getScore());
+            switch (res) {
+                case 1:
+                    cout << "You win!!!\n";
+                case -1:
+                    cout << "You lose!!!\n";
+                case 0:
+                    cout << "Push.\n";
+            }
         }
 
         blackJackWindow.display();
@@ -132,7 +148,11 @@ void gameScreen(sf::RenderWindow& window, PlayerHand& player,DealerHand& dealer)
     }
 }
 
-void hitScreen(sf::RenderWindow& window ,PlayerHand& player) {
+//void ResultScreen(sf::RenderWindow& window, PlayerHand& player, ) {
+//    
+//}
+
+void hitScreen(sf::RenderWindow& window, PlayerHand& player) {
     if(player.getCards().size() != 0) {
         sf::Vector2f playerCardPosition(700,700);
         for(size_t i = 0; i<player.getCards().size() ;i++){

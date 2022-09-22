@@ -46,6 +46,7 @@ public:
 
     // TODO: improve shuffle methods
     void shuffle() {
+        srand(time(0));
         int j;
         for (int i = cards_.size() - 1; i >= 1; i--) {
             j = rand() % i;
