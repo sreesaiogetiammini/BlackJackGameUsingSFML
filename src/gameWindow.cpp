@@ -66,6 +66,31 @@ void runGameWindow(){
             gameScreen(blackJackWindow,player,dealer);
         }
         
+        if(e==HitScreen){
+            cout << "Came to Hit Screen" << endl;
+            hitScreen(blackJackWindow,player);
+        }
+        
+        if (e==GameScreen && event.type == sf::Event::MouseButtonReleased){
+            cout << "Came to Mouse Button" << endl;
+                //Get the mouse position:
+                sf::Vector2i mouse = sf::Mouse::getPosition(blackJackWindow);
+                //Map Pixel to Coords:
+                blackJackWindow.mapPixelToCoords(mouse);
+                //Set position of the mouse to the rectangle:
+                if(hitText.getGlobalBounds().contains(mouse.x, mouse.y)){
+                    game.hit(player);
+                    if(player.getScore()>21){
+                        // Display Result Screen;
+                    }
+                    else{
+                        e = HitScreen;
+                        
+                    }
+                }
+           }
+        
+        
         if (e==IntroScreen && event.type == sf::Event::MouseButtonReleased){
             cout << "Came to Mouse Button" << endl;
                 //Get the mouse position:
@@ -75,12 +100,21 @@ void runGameWindow(){
                 //Set position of the mouse to the rectangle:
                 if(playText.getGlobalBounds().contains(mouse.x, mouse.y)){
                     game.play(player, dealer);
-                    e = GameScreen;
+                    cout << player.getScore() << endl;
+                    if(player.getScore()>21){
+                        // Display Result Screen;
+                    }
+                    else{
+                        e = GameScreen;
+                        
+                    }
                 }
            }
-            
-        }
         blackJackWindow.display();
+        }
+    
+    
+       
 }
     
 
