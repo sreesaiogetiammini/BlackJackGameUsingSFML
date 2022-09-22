@@ -33,6 +33,32 @@ public:
 //        round = 0;
     }
     
+    // play the game
+    void deal2Cards(PlayerHand& player, DealerHand& dealer) {
+        deck_.shuffle();
+        // Alternate dealing cards between the player and dealer
+        for (int i = 0; i < 2; i++) {
+            deck_.dealHand(player);
+            deck_.dealHand(dealer);
+        }
+    }
+    
+    void hit(PlayerHand& hand) {
+        std::string handType = "player";
+        if (hand.getClassName() == "DealerHand") {
+            handType = "dealer";
+        }
+        if (handType == "dealer") {
+            while (hand.getScore() < 17) {
+                deck_.dealHand(hand);
+                hand.setScore(calculateScore(hand));
+            }
+        } else {
+            deck_.dealHand(hand);
+            hand.setScore(calculateScore(hand));
+        }
+    }
+    
     unsigned short calculateScore(const PlayerHand& hand) {
         std::map<std::string, int> rankToValue = {
             {"1", 1}, {"2", 2}, {"3", 3}, {"4", 4}, {"5", 5},
@@ -67,22 +93,6 @@ public:
         }
     }
     
-    void hit(PlayerHand& hand) {
-        std::string handType = "player";
-        if (hand.getClassName() == "DealerHand") {
-            handType = "dealer";
-        }
-        if (handType == "dealer") {
-            while (hand.getScore() < 17) {
-                deck_.dealHand(hand);
-                hand.setScore(calculateScore(hand));
-            }
-        } else {
-            deck_.dealHand(hand);
-            hand.setScore(calculateScore(hand));
-        }
-    }
-    
     // return 0 if push, return 1 if player wins, return -1 if player lose
     short determineWinner(unsigned short playerScore, unsigned short dealerScore) {
         if (playerScore > 21) {
@@ -95,16 +105,6 @@ public:
             return -1;
         } else {
             return 1;
-        }
-    }
-    
-    // play the game
-    void play(PlayerHand& player, DealerHand& dealer) {
-        deck_.shuffle();
-        // Alternate dealing cards between the player and dealer
-        for (int i = 0; i < 2; i++) {
-            deck_.dealHand(player);
-            deck_.dealHand(dealer);
         }
     }
 };
