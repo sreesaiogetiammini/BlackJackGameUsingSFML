@@ -109,6 +109,16 @@ public:
             return 1;
         }
     }
+    
+    // play the game
+    void play(PlayerHand& player, DealerHand& dealer) {
+        deck_.shuffle();
+        // Alternate dealing cards between the player and dealer
+        for (int i = 0; i < 2; i++) {
+            deck_.dealHand(player);
+            deck_.dealHand(dealer);
+        }
+    }
 };
 
 

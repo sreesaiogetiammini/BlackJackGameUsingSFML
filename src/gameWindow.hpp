@@ -26,6 +26,7 @@ void gameScreen(sf::RenderWindow& window,PlayerHand& player,DealerHand& dealer);
 void hitScreen(sf::RenderWindow& window ,PlayerHand& player);
 // TODO: no playScreen
 void playScreen(sf::RenderWindow& window);
-void StandScreen(sf::RenderWindow& window);
+void standScreen(sf::RenderWindow& window,DealerHand& dealer);
+void resultScreen(sf::RenderWindow& window, bool winner,PlayerHand& player,DealerHand& dealer);
 #endif /* gameWindow_hpp */
 
