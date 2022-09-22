@@ -34,6 +34,10 @@ public:
         return suit_;
     }
     
+    bool getVisible() const {
+        return visible_;
+    }
+    
     void setVisible(bool visible) {
         visible_ = visible;
     }

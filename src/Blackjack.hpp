@@ -106,6 +106,7 @@ public:
             deck_.dealHand(player);
             deck_.dealHand(dealer);
         }
+        dealer.getCards()[0].setVisible(false);
     }
 };
 
