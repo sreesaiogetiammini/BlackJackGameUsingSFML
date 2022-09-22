@@ -80,11 +80,12 @@ void runGameWindow(){
                 //Set position of the mouse to the rectangle:
                 if(hitText.getGlobalBounds().contains(mouse.x, mouse.y)){
                     game.hit(player);
-                    if(player.getScore()>21){
-                        // Display Result Screen;
+                    cout << game.calculateScore(player)<< endl;
+                    if(game.calculateScore(player)>21){
+                        cout << "Hit is Lost" << endl;
                     }
                     else{
-                        e = HitScreen;
+                        e = GameScreen;
                         
                     }
                 }
@@ -100,9 +101,9 @@ void runGameWindow(){
                 //Set position of the mouse to the rectangle:
                 if(playText.getGlobalBounds().contains(mouse.x, mouse.y)){
                     game.play(player, dealer);
-                    cout << player.getScore() << endl;
-                    if(player.getScore()>21){
-                        // Display Result Screen;
+                    cout << game.calculateScore(player)<< endl;
+                    if(game.calculateScore(player)>21){
+                        cout << "Game is Lost" << endl;
                     }
                     else{
                         e = GameScreen;
