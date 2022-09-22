@@ -81,7 +81,7 @@ void runGameWindow(){
             
         }
         blackJackWindow.display();
-    }
+}
     
 
     
@@ -95,6 +95,7 @@ void introScreen(sf::RenderWindow& window){
     window.draw(*drawQuitRect());
     window.draw(*drawQuitText());
 }
+
 
 void gameScreen(sf::RenderWindow& window,PlayerHand& player,DealerHand& dealer)
 {
@@ -133,7 +134,6 @@ void gameScreen(sf::RenderWindow& window,PlayerHand& player,DealerHand& dealer)
     window.draw(*drawStandText());
 }
 
-
 void hitScreen(sf::RenderWindow& window ,PlayerHand& player)
 {
     cout << "Came to Hit Screen" << endl;
@@ -166,9 +166,6 @@ void StandScreen(sf::RenderWindow& window)
     window.draw(*drawStandCircle());
     window.draw(*drawStandText());
 }
-
-
-
 
 
 sf::Text* drawText(const std::string& text,const sf::Vector2f& textPosition,const sf::Color& textColor ,const size_t& characterSize){
@@ -328,8 +325,3 @@ void moveText(sf::Text& text)
 {
     text.move(0, 0);
 }
-
-
-
-
-
