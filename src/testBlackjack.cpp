@@ -8,6 +8,7 @@
 #include "testBlackjack.hpp"
 #include "Card.hpp"
 #include "PlayerHand.hpp"
+#include "DealerHand.hpp"
 #include "Blackjack.hpp"
 
 void testBlackjack() {
@@ -23,6 +24,7 @@ void testBlackjack() {
     Card card10("J", "clubs");
     Card card11("Q", "hearts");
     Card card12("10", "spades");
+    Card card13("9", "spades");
     
     PlayerHand playerHand;
     playerHand.addCard(card1);
@@ -45,7 +47,19 @@ void testBlackjack() {
     dealerHand2.addCard(card12);
     dealerHand2.addCard(card2);
     
-    std::cout << playerHand.getClassName() << " " << dealerHand.getClassName() << std::endl;
+    PlayerHand playerHand3;
+    playerHand.addCard(card1);
+    playerHand.addCard(card5);
+    playerHand.addCard(card13);
+    
+    Blackjack bj;
+    assert(card2.getRank() == "A");
+    assert(bj.calculateScore(playerHand.getCards()) == 14);
+    assert(bj.calculateScore(dealerHand.getCards()) == 22);
+    assert(bj.calculateScore(playerHand2.getCards()) == 21);
+    assert(bj.calculateScore(dealerHand2.getCards()) == 21);
+    assert(bj.calculateScore(playerHand3.getCards()) == 22);
+    
     
     std::cout << "All tests passed!\n";
 }
