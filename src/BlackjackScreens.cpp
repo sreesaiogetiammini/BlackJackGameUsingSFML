@@ -7,6 +7,7 @@
 
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/Mouse.hpp>
+#include <SFML/Audio.hpp>
 #include "BlackjackScreens.hpp"
 #include "drawHelpers.hpp"
 #include "PlayerHand.hpp"
@@ -53,9 +54,7 @@ void standScreen(sf::RenderWindow& window, DealerHand& dealer) {
     window.draw(*drawDealerScore(dealer.getScore()));
 }
 
-
-void resultScreen(sf::RenderWindow& window, short winner, PlayerHand& player,DealerHand& dealer)
-{
+void resultScreen(sf::RenderWindow& window, short winner, PlayerHand& player, DealerHand& dealer) {
     window.clear(sf::Color(0,65,0));
     window.draw(*drawPlayerText());
     window.draw(*drawDelearText());
@@ -68,14 +67,12 @@ void resultScreen(sf::RenderWindow& window, short winner, PlayerHand& player,Dea
     window.draw(*drawDealerScoreCircle());
     window.draw(*drawDealerScore(dealer.getScore()));
     sf::Vector2f winnerPosition(900,2);
-    if(winner==1){
-        window.draw(*drawText("Player Wins!", winnerPosition,  sf::Color(253, 216, 53), 400));
-    }
-    else if(winner==0){
-        window.draw(*drawText("Game Draw", winnerPosition,  sf::Color(253, 216, 53), 400));
-    }
     
-    else if(winner== -1){
+    if(winner == 1){
+        window.draw(*drawText("Player Wins!", winnerPosition,  sf::Color(253, 216, 53), 400));
+    } else if(winner ==0){
+        window.draw(*drawText("Game Draw", winnerPosition,  sf::Color(253, 216, 53), 400));
+    } else if(winner == -1){
         window.draw(*drawText("Dealer Wins!", winnerPosition,  sf::Color(253, 216, 53), 400));
     }
     winnerPosition.y += 50;
@@ -88,7 +85,7 @@ void displayCards(sf::RenderWindow& window, std::vector<Card> cards, sf::Vector2
         if(cards[i].getVisible()){
             window.draw(*drawText(cards[i].getRank(), cardPosition, sf::Color::Black, 60));
             sf::Texture cardImage;
-            if(cardImage.loadFromFile("Images/"+cards[i].getSuit()+".png")){
+            if(cardImage.loadFromFile("images/"+cards[i].getSuit()+".png")){
                 sf::Sprite imageSprite;
                 imageSprite.setTexture(cardImage,true);
                 cardPosition.y += 250;

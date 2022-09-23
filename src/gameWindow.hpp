@@ -9,9 +9,8 @@
 #define gameWindow_hpp
 
 #pragma once
-#include <stdio.h>
-#include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 #include "PlayerHand.hpp"
 #include "DealerHand.hpp"
@@ -25,6 +24,6 @@ enum screens {
     ResultScreen
 };
 void runGameWindow();
-short verifyGameResults(sf::RenderWindow& blackJackWindow,sf::Event& event,PlayerHand& player,DealerHand& dealer,Blackjack& game,screens& screen,short& winner);
+short verifyGameResults(sf::RenderWindow& blackJackWindow,sf::Event& event,PlayerHand& player,DealerHand& dealer,Blackjack& game,screens& screen, short& winner, sf::Sound& sound);
 #endif /* gameWindow_hpp */
 

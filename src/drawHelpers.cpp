@@ -33,7 +33,7 @@ void drawBackground(sf::RenderWindow& window) {
 sf::Text* drawText(const std::string& text,const sf::Vector2f& textPosition,const sf::Color& textColor ,const size_t& characterSize) {
     sf::Font* introFont;
     introFont = new sf::Font;
-    if(!introFont->loadFromFile("Fonts/IntroFont.otf")){};
+    if(!introFont->loadFromFile("fonts/IntroFont.otf")){};
     sf::Text* textSf;
     textSf = new sf::Text;
     textSf->setColor(textColor);
@@ -119,7 +119,7 @@ sf::Text* drawCard(const Card card, sf::Vector2f& cardPosition) {
     sf::Font* introFont;
     introFont = new sf::Font;
     if(!introFont->loadFromFile("Roboto-Bold.ttf")){
-        
+        std::cout << "cannot find Roboto-Bold.ttf\n";
     }
     sf::Text* textSf;
     textSf = new sf::Text;
