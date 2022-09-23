@@ -7,7 +7,7 @@
 
 #ifndef drawHelpers_hpp
 #define drawHelpers_hpp
-
+#pragma once
 #include "Card.hpp"
 bool checkMousePosition(sf::RenderWindow& window, sf::Shape& text);
 void drawBackground(sf::RenderWindow& window);

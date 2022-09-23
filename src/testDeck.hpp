@@ -7,7 +7,7 @@
 
 #ifndef testDeck_hpp
 #define testDeck_hpp
-
+#pragma once
 #include "Deck.hpp"
 
 void testDeck() {

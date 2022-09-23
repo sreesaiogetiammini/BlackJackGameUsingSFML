@@ -4,12 +4,8 @@
 //
 //  Created by Yue Sun on 9/22/22.
 //
-
-#include <SFML/Window/Keyboard.hpp>
-#include <SFML/Window/Mouse.hpp>
 #include "BlackjackScreens.hpp"
 #include "drawHelpers.hpp"
-#include "PlayerHand.hpp"
 
 void introScreen(sf::RenderWindow& window){
     window.clear(sf::Color(0,65,0));

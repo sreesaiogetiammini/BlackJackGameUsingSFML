@@ -4,20 +4,11 @@
 //
 //  Created by Sree Sai on 9/20/22.
 //
-
-#include <SFML/Window/Keyboard.hpp>
-#include <SFML/Window/Mouse.hpp>
-#include <SFML/Graphics.hpp>
-
 #include "gameWindow.hpp"
-#include "Card.hpp"
-#include "Blackjack.hpp"
-#include "PlayerHand.hpp"
 #include "drawHelpers.hpp"
 #include "BlackjackScreens.hpp"
 
 using namespace std;
-
 void runGameWindow(){
     // create the window
     sf::RenderWindow blackJackWindow(sf::VideoMode::getDesktopMode(), "BlackJack Game",sf::Style::Default);
@@ -33,9 +24,22 @@ void runGameWindow(){
     DealerHand dealer;
     screens screen = IntroScreen;
     short winner ;
+    sf::SoundBuffer soundBuffer;
+    sf::Music music;
+    sf::Sound sound;
+    
+        soundBuffer.loadFromFile("Audio/audio2.dll");
+        sound.setBuffer(soundBuffer);
+        sound.setVolume(50);
+            music.openFromFile("Audio/audio2.dll");
+           music.setVolume(50);
+
     while (blackJackWindow.isOpen()) {
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
+    
+        sound.play();
+        music.play();
         while (blackJackWindow.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 blackJackWindow.close();

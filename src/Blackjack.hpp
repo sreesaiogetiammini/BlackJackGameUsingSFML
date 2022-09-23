@@ -12,7 +12,6 @@
 #include <string>
 #include <vector>
 #include <map>
-
 #include "Card.hpp"
 #include "Deck.hpp"
 #include "PlayerHand.hpp"

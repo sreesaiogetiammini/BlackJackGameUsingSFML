@@ -11,11 +11,15 @@
 #pragma once
 #include <stdio.h>
 #include <iostream>
-#include <SFML/Graphics.hpp>
 #include <vector>
-#include "PlayerHand.hpp"
-#include "DealerHand.hpp"
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Window/Mouse.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Blackjack.hpp"
+#include "PlayerHand.hpp"
+
+
 
 enum screens {
     IntroScreen,
@@ -26,5 +30,6 @@ enum screens {
 };
 void runGameWindow();
 short verifyGameResults(sf::RenderWindow& blackJackWindow,sf::Event& event,PlayerHand& player,DealerHand& dealer,Blackjack game,screens& screen,short& winner);
+
 #endif /* gameWindow_hpp */
 

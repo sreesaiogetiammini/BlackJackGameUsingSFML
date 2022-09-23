@@ -7,7 +7,7 @@
 
 #ifndef Card_hpp
 #define Card_hpp
-
+#pragma once
 #include <string>
 #include <iostream>
 

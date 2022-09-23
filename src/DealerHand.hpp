@@ -7,7 +7,7 @@
 
 #ifndef DealerHand_hpp
 #define DealerHand_hpp
-
+#pragma once
 #include <vector>
 #include "Card.hpp"
 

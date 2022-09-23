@@ -7,11 +7,8 @@
 
 #ifndef BlackjackScreens_hpp
 #define BlackjackScreens_hpp
-
-#include <SFML/Window/Keyboard.hpp>
-#include <SFML/Window/Mouse.hpp>
-#include <SFML/Graphics.hpp>
-
+#pragma once
+#include "gameWindow.hpp"
 #include "PlayerHand.hpp"
 #include "DealerHand.hpp"
 

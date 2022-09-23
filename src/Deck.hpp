@@ -7,7 +7,7 @@
 
 #ifndef Deck_hpp
 #define Deck_hpp
-
+#pragma once
 #include <vector>
 #include <string>
 #include "Card.hpp"

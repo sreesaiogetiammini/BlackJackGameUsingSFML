@@ -7,7 +7,7 @@
 
 #ifndef testBlackjack_hpp
 #define testBlackjack_hpp
-
+#pragma once
 void testBlackjack();
 
 #endif /* testBlackjack_hpp */

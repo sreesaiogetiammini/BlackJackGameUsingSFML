@@ -7,7 +7,7 @@
 
 #ifndef Hand_hpp
 #define Hand_hpp
-
+#pragma once
 #include <vector>
 #include "Card.hpp"
 

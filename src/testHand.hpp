@@ -7,7 +7,7 @@
 
 #ifndef testHand_hpp
 #define testHand_hpp
-
+#pragma once
 #include "Card.hpp"
 #include "PlayerHand.hpp"
 #include "Blackjack.hpp"
