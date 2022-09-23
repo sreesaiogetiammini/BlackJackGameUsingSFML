@@ -76,7 +76,7 @@ void runGameWindow(){
             
         }
         
-    if(screen==ResultScreen) {
+    if(screen == ResultScreen) {
         dealer.revealHand();
         resultScreen(blackJackWindow,winner,player,dealer);
     }

@@ -45,7 +45,7 @@ void standScreen(sf::RenderWindow& window, DealerHand& dealer) {
 }
 
 
-void resultScreen(sf::RenderWindow& window, short winner,PlayerHand& player,DealerHand& dealer)
+void resultScreen(sf::RenderWindow& window, short winner, PlayerHand& player,DealerHand& dealer)
 {
     window.clear(sf::Color(0,65,0));
     window.draw(*drawPlayerText());
@@ -56,14 +56,14 @@ void resultScreen(sf::RenderWindow& window, short winner,PlayerHand& player,Deal
     displayCards(window, dealer.getCards(), dealerCardPosition);
     sf::Vector2f winnerPosition(900,2);
     if(winner==1){
-        window.draw(*drawText("Player Wins", winnerPosition,  sf::Color(145,0,0), 400));
+        window.draw(*drawText("Player Wins!", winnerPosition,  sf::Color(253, 216, 53), 400));
     }
     else if(winner==0){
-        window.draw(*drawText("Game Draw", winnerPosition,  sf::Color(145,0,0), 400));
+        window.draw(*drawText("Game Draw", winnerPosition,  sf::Color(253, 216, 53), 400));
     }
     
     else if(winner== -1){
-        window.draw(*drawText("Dealer Wins", winnerPosition,  sf::Color(145,0,0), 400));
+        window.draw(*drawText("Dealer Wins!", winnerPosition,  sf::Color(253, 216, 53), 400));
     }
     winnerPosition.y = winnerPosition.y + 50;
     drawRectangle(winnerPosition, sf::Vector2f(1800,900), sf::Color::Black);
