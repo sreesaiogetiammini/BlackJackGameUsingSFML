@@ -23,8 +23,7 @@ void introScreen(sf::RenderWindow& window){
 }
 
 
-void gameScreen(sf::RenderWindow& window,PlayerHand& player,DealerHand& dealer)
-{
+void gameScreen(sf::RenderWindow& window,PlayerHand& player,DealerHand& dealer) {
     drawBackground(window);
     hitScreen(window, player);
     standScreen(window, dealer);
@@ -32,6 +31,7 @@ void gameScreen(sf::RenderWindow& window,PlayerHand& player,DealerHand& dealer)
     window.draw(*drawHitText());
     window.draw(*drawStandCircle());
     window.draw(*drawStandText());
+//    window.draw(*drawScore(player.getScore()));
 }
 
 void hitScreen(sf::RenderWindow& window, PlayerHand& player) {

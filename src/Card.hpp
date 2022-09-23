@@ -52,12 +52,12 @@ public:
             suit = "♦︎";
         }
         std::cout << "(" << rank_ << ", " << suit << ") " ;
-        //std::cout << "____\n" << "|" << rank_ << "  |\n" << "| " << suit << " |\n" << "|__" << rank_ << "|\n" ;
+    }
+    
+    bool operator==(Card& rhs) {
+        return rank_ == rhs.rank_ && suit_ == rhs.suit_;
     }
     
 };
-
-// TODO: A last, compare suits
-bool compareCard(Card& a, Card& b);
 
 #endif /* Card_hpp */
