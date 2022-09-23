@@ -16,7 +16,7 @@ class DealerHand {
 private:
     std::vector<Card> cards_;
     unsigned short score_;
-    bool visible;
+    bool visible_;
     
     unsigned short calculateScore() {
         std::map<std::string, int> rankToValue = {
@@ -51,9 +51,13 @@ private:
     
 public:
     DealerHand(){
-        visible = false;
+        visible_ = false;
         score_ = 0;
     };
+    
+    bool getVisible() {
+        return visible_;
+    }
     
     std::vector<Card> getCards() const {
         return cards_;
@@ -72,7 +76,7 @@ public:
      If visible = true, then all cards are visible.
      */
     void addCard(Card& card) {
-        if (!visible && cards_.size() == 0) {
+        if (!visible_ && cards_.size() == 0) {
             card.setVisible(false);
         }
         cards_.push_back(card);
@@ -88,6 +92,7 @@ public:
     
     // make all cards visible and then sort them
     void revealHand() {
+        visible_ = true;
         for (Card& card : cards_) {
             card.setVisible(true);
         }

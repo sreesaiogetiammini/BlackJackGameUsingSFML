@@ -13,9 +13,9 @@ Position playerText {1000, 450};
 Position dealerText {1800, 450};
 
 Position playerScore {850, playerText.y + 10};
-Position dealerScore {1950, dealerText.y + 10};
+Position dealerScore {2100, dealerText.y + 10};
 Position playerScoreCircle {playerScore.x - 30, playerScore.y + 10};
-Position dealerScoreCircle {dealerScore.x + 30, dealerScore.y + 10};
+Position dealerScoreCircle {dealerScore.x - 30, dealerScore.y + 10};
 
 bool checkMousePosition(sf::RenderWindow& window, sf::Shape& shape) {
     sf::Vector2i mouse = sf::Mouse::getPosition(window);//Get mouse position
@@ -33,7 +33,7 @@ void drawBackground(sf::RenderWindow& window) {
 sf::Text* drawText(const std::string& text,const sf::Vector2f& textPosition,const sf::Color& textColor ,const size_t& characterSize) {
     sf::Font* introFont;
     introFont = new sf::Font;
-    if(!introFont->loadFromFile("Fonts/IntroFont.otf")){};
+    if(!introFont->loadFromFile("fonts/IntroFont.otf")){};
     sf::Text* textSf;
     textSf = new sf::Text;
     textSf->setColor(textColor);
@@ -119,7 +119,7 @@ sf::Text* drawCard(const Card card, sf::Vector2f& cardPosition) {
     sf::Font* introFont;
     introFont = new sf::Font;
     if(!introFont->loadFromFile("Roboto-Bold.ttf")){
-        
+        std::cout << "cannot find Roboto-Bold.ttf\n";
     }
     sf::Text* textSf;
     textSf = new sf::Text;
