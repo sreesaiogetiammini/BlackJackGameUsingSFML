@@ -8,11 +8,10 @@
 #ifndef Deck_hpp
 #define Deck_hpp
 
+#pragma once
 #include <vector>
 #include <string>
-#include "Card.hpp"
 #include "PlayerHand.hpp"
-#include "DealerHand.hpp"
 
 class Deck {
 private:

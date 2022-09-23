@@ -7,14 +7,8 @@
 
 #ifndef BlackjackScreens_hpp
 #define BlackjackScreens_hpp
-
-#include <SFML/Window/Keyboard.hpp>
-#include <SFML/Window/Mouse.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-
-#include "PlayerHand.hpp"
-#include "DealerHand.hpp"
+#pragma once
+#include "gameWindow.hpp"
 
 void introScreen(sf::RenderWindow& window);
 void gameScreen(sf::RenderWindow& window, PlayerHand& player, DealerHand& dealer);
