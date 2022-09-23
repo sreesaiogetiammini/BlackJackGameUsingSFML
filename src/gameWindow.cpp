@@ -23,8 +23,6 @@ void runGameWindow(){
     sf::RenderWindow blackJackWindow(sf::VideoMode::getDesktopMode(), "BlackJack Game",sf::Style::Default);
     blackJackWindow.setFramerateLimit(60);
     
-    sf::Text playText = *drawPlayText();
-    sf::Text quitText = *drawQuitText();
     sf::RectangleShape playRect = *drawPlayRect();
     sf::RectangleShape quitRect = *drawQuitRect();
     
@@ -54,26 +52,22 @@ void runGameWindow(){
             }
         }
         
-        if (screen == GameScreen )
-        {
+        if (screen == GameScreen ) {
             if(event.type == sf::Event::KeyReleased){
-            winner = verifyGameResults( blackJackWindow,event, player, dealer, game, screen, winner);
+                winner = verifyGameResults( blackJackWindow,event, player, dealer, game, screen, winner);
             }
             else {
                 gameScreen(blackJackWindow,player,dealer);
             }
-            
         }
         
-        if (screen == HitScreen )
-        {
+        if (screen == HitScreen ) {
             if(event.type == sf::Event::KeyReleased){
             winner = verifyGameResults( blackJackWindow,event, player, dealer, game, screen, winner);
             }
             else {
                 hitScreen(blackJackWindow,player);
             }
-            
         }
         
     if(screen == ResultScreen) {
@@ -90,23 +84,20 @@ void runGameWindow(){
 }
 }
 
-short verifyGameResults(sf::RenderWindow& blackJackWindow,sf::Event& event,PlayerHand& player,DealerHand& dealer,Blackjack game,screens& screen,short& winner){
+short verifyGameResults(sf::RenderWindow& blackJackWindow,sf::Event& event,PlayerHand& player,DealerHand& dealer,Blackjack& game,screens& screen,short& winner){
     if(event.key.code == sf::Keyboard::H){
         game.hitPlayer(player);
-        cout << player.getScore() << endl;
         if(player.getScore() > 21 ){
             cout << "The Score is Greater than 21 and Dealer Wins" << endl;
             winner = game.determineWinner(player.getScore(), dealer.getScore());
             screen = ResultScreen;
             return winner;
-        }
-        else if (player.getScore() == 21) {
+        } else if (player.getScore() == 21) {
             game.hitDealer(dealer);
             winner = game.determineWinner(player.getScore(), dealer.getScore());
             screen = ResultScreen;
             return winner;
-        }
-        else {
+        } else {
             screen = HitScreen;
         }
     }
