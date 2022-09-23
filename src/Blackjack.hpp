@@ -22,15 +22,13 @@
 class Blackjack {
 private:
     Deck deck_;
-    int wallet_;
-    int bet_;
-//    unsigned int round;
-//    unsigned long gameNumber; // an auto-increment unique id for a Blackjack object
+//    int wallet_;
+//    int bet_;
     
 public:
     Blackjack() {
         deck_ = Deck();
-        wallet_ = 20;
+//        wallet_ = 20;
 //        round = 0;
     }
     
@@ -75,21 +73,12 @@ public:
             return score;
         }
         score += numA;
-        std::vector<int> scores;
-        scores.push_back(score);
-        for (int i = 0; i < numA; i++) {
-            score += 10;
-            scores.push_back(score);
-        }
         for (int i = 0; i < numA + 1; i++) {
-            if (scores[i] > 21) {
-                if (i == 0) {
-                    return scores[0];
-                } else {
-                    return scores[i - 1];
-                }
-            } else if (scores[i] == 21) {
-                return 21;
+            score += 10;
+            if (score == 21) {
+                return score;
+            } else if (score > 21) {
+                return score - 10;
             }
         }
     }

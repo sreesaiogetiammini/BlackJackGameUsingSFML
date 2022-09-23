@@ -26,40 +26,39 @@ void testBlackjack() {
     Card card12("10", "spades");
     Card card13("9", "spades");
     
-    PlayerHand playerHand;
+    PlayerHand playerHand; // AAAA = 14
     playerHand.addCard(card1);
     playerHand.addCard(card2);
     playerHand.addCard(card3);
     playerHand.addCard(card4);
     
-    DealerHand dealerHand;
+    PlayerHand playerHand2; // JQA = 21
+    playerHand2.addCard(card10);
+    playerHand2.addCard(card11);
+    playerHand2.addCard(card3);
+    
+    PlayerHand playerHand3; //A29 = 12
+    playerHand3.addCard(card1);
+    playerHand3.addCard(card5);
+    playerHand3.addCard(card13);
+    
+    DealerHand dealerHand; //Q,10,AA = 22
     dealerHand.addCard(card10);
     dealerHand.addCard(card11);
     dealerHand.addCard(card1);
     dealerHand.addCard(card2);
     
-    PlayerHand playerHand2;
-    playerHand2.addCard(card10);
-    playerHand2.addCard(card11);
-    playerHand2.addCard(card3);
-    
-    DealerHand dealerHand2;
+    DealerHand dealerHand2; // AQ = 21
     dealerHand2.addCard(card12);
     dealerHand2.addCard(card2);
-    
-    PlayerHand playerHand3;
-    playerHand.addCard(card1);
-    playerHand.addCard(card5);
-    playerHand.addCard(card13);
     
     Blackjack bj;
     assert(card2.getRank() == "A");
     assert(bj.calculateScore(playerHand.getCards()) == 14);
-    assert(bj.calculateScore(dealerHand.getCards()) == 22);
     assert(bj.calculateScore(playerHand2.getCards()) == 21);
+    assert(bj.calculateScore(playerHand3.getCards()) == 12);
+    assert(bj.calculateScore(dealerHand.getCards()) == 22);
     assert(bj.calculateScore(dealerHand2.getCards()) == 21);
-    assert(bj.calculateScore(playerHand3.getCards()) == 22);
-    
     
     std::cout << "All tests passed!\n";
 }

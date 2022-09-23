@@ -14,8 +14,7 @@
 
 class PlayerHand {
 protected:
-    // all cards visible
-    std::vector<Card> cards_;
+    std::vector<Card> cards_; // all cards visible
     unsigned short score_;
     
 public:

@@ -5,7 +5,7 @@
 
 int main()
 {
-//    testBlackjack();
-    runGameWindow();
+    testBlackjack();
+//    runGameWindow();
     return 0;
 }
