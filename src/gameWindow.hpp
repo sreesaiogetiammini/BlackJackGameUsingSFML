@@ -11,10 +11,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include <vector>
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Window/Mouse.hpp>
 #include "PlayerHand.hpp"
 #include "DealerHand.hpp"
 #include "Blackjack.hpp"
+#include "drawHelpers.hpp"
+#include "BlackjackScreens.hpp"
 
 enum screens {
     IntroScreen,

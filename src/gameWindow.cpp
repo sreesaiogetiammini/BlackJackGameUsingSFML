@@ -5,17 +5,9 @@
 //  Created by Sree Sai on 9/20/22.
 //
 
-#include <SFML/Window/Keyboard.hpp>
-#include <SFML/Window/Mouse.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+
 
 #include "gameWindow.hpp"
-#include "Card.hpp"
-#include "Blackjack.hpp"
-#include "PlayerHand.hpp"
-#include "drawHelpers.hpp"
-#include "BlackjackScreens.hpp"
 
 using namespace std;
 
@@ -79,6 +71,11 @@ void runGameWindow(){
         if(screen == ResultScreen) {
             dealer.revealHand();
             resultScreen(blackJackWindow, winner, player, dealer);
+            if(event.type == sf::Event::KeyReleased){
+                if(event.key.code == sf::Keyboard::Escape){
+                    blackJackWindow.close();
+                }
+            }
         }
         
         if(screen == StandScreen) {

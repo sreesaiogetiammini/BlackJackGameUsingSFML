@@ -77,6 +77,8 @@ void resultScreen(sf::RenderWindow& window, short winner, PlayerHand& player, De
     }
     winnerPosition.y += 50;
     drawRectangle(winnerPosition, sf::Vector2f(1800,900), sf::Color::Black);
+    sf::Vector2f escPosition(200,2);
+    window.draw(*drawText("Press Esc to Exit", escPosition,  sf::Color::White, 70));
 }
 
 void displayCards(sf::RenderWindow& window, std::vector<Card> cards, sf::Vector2f cardPosition) {
