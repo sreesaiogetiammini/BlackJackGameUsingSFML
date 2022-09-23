@@ -115,7 +115,7 @@ sf::Text* drawStandText(){
     return drawText(" Press S to Stand ", textPos, textColor,cap);
 }
 
-sf::Text* drawCard(const Card card, sf::Vector2f& cardPosition) {
+sf::Text* drawCardText(const Card card, sf::Vector2f& cardPosition) {
     sf::Font* introFont;
     introFont = new sf::Font;
     if(!introFont->loadFromFile("Roboto-Bold.ttf")){
@@ -130,10 +130,15 @@ sf::Text* drawCard(const Card card, sf::Vector2f& cardPosition) {
     return textSf;
 }
 
-sf::RectangleShape* drawCard(sf::Vector2f& cardPos) {
+sf::RectangleShape* drawCardRec(sf::Vector2f& cardPos, bool visible) {
     sf::Vector2f cardPosition(cardPos);
     sf::Vector2f cardSize(400,600);
-    sf::Color cardColor(sf::Color::White);
+    sf::Color cardColor;
+    if (visible) {
+        cardColor = sf::Color::White;
+    } else {
+        cardColor = sf::Color(128, 128, 128);
+    }
     return drawRectangle(cardPosition, cardSize, cardColor);
 }
 
