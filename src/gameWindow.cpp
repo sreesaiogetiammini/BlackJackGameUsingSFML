@@ -50,6 +50,7 @@ void runGameWindow(){
                 // check mouse position to play or quit the game
                 if(checkMousePosition(blackJackWindow, playRect)) {
                     game.deal2Cards(player, dealer);
+                    sound.play();
                     screen = GameScreen;
                 } else if (checkMousePosition(blackJackWindow, quitRect)) {
                     blackJackWindow.close();
