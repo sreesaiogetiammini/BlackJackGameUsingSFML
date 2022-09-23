@@ -94,16 +94,16 @@ sf::RectangleShape* drawQuitRect(){
 }
 
 sf::Text* drawHitText(){
-    const sf::Vector2f textPos(1375,750);
+    const sf::Vector2f textPos(1375,800);
     const sf::Color textColor(sf::Color::White);
-    const size_t cap= 60;
-    return drawText(" Press H to HIT ",textPos,textColor,cap);
+    const size_t cap = 60;
+    return drawText(" Press H to Hit ",textPos,textColor,cap);
 }
 
 sf::Text* drawStandText(){
-    const sf::Vector2f textPos(1350,1100);
+    const sf::Vector2f textPos(1350,1150);
     const sf::Color textColor(sf::Color::White);
-    const size_t cap= 60;
+    const size_t cap = 60;
     return drawText(" Press S to Stand ", textPos, textColor,cap);
 }
 

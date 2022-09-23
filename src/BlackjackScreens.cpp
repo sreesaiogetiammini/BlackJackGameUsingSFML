@@ -65,7 +65,7 @@ void resultScreen(sf::RenderWindow& window, short winner, PlayerHand& player,Dea
     else if(winner== -1){
         window.draw(*drawText("Dealer Wins!", winnerPosition,  sf::Color(253, 216, 53), 400));
     }
-    winnerPosition.y = winnerPosition.y + 50;
+    winnerPosition.y += 50;
     drawRectangle(winnerPosition, sf::Vector2f(1800,900), sf::Color::Black);
 }
 
