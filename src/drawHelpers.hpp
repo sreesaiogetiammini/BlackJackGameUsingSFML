@@ -9,6 +9,12 @@
 #define drawHelpers_hpp
 
 #include "Card.hpp"
+
+struct Position {
+    unsigned int x;
+    unsigned int y;
+};
+
 bool checkMousePosition(sf::RenderWindow& window, sf::Shape& text);
 void drawBackground(sf::RenderWindow& window);
 sf::Text* drawText(const std::string& text,const sf::Vector2f& textPosition,const sf::Color& textColor ,const size_t& characterSize);
@@ -27,6 +33,9 @@ sf::RectangleShape* drawCard(sf::Vector2f& cardPos);
 sf::CircleShape* drawHitCircle();
 sf::CircleShape* drawStandCircle();
 sf::CircleShape* drawCircle(const float& radius, const sf::Vector2f& circlePosition, const sf::Color& circleFillColor);
-sf::Text* drawScore(unsigned short score);
+sf::Text* drawPlayerScore(unsigned short score);
+sf::CircleShape* drawPlayerScoreCircle();
+sf::Text* drawDealerScore(unsigned short score);
+sf::CircleShape* drawDealerScoreCircle();
 
 #endif /* drawHelpers_hpp */

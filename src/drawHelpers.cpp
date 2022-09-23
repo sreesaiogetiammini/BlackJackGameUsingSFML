@@ -9,6 +9,14 @@
 #include "drawHelpers.hpp"
 #include "Card.hpp"
 
+Position playerText {1000, 450};
+Position dealerText {1800, 450};
+
+Position playerScore {850, playerText.y + 10};
+Position dealerScore {1950, dealerText.y + 10};
+Position playerScoreCircle {playerScore.x - 30, playerScore.y + 10};
+Position dealerScoreCircle {dealerScore.x + 30, dealerScore.y + 10};
+
 bool checkMousePosition(sf::RenderWindow& window, sf::Shape& shape) {
     sf::Vector2i mouse = sf::Mouse::getPosition(window);//Get mouse position
     window.mapPixelToCoords(mouse);
@@ -43,14 +51,14 @@ sf::Text* drawGameTitle(){
 }
 
 sf::Text* drawPlayerText() {
-    const sf::Vector2f textPos(1000,450);
+    const sf::Vector2f textPos(playerText.x, playerText.y);
     const sf::Color textColor(sf::Color::White);
-    const size_t cap= 90;
+    const size_t cap = 90;
     return drawText("Player",textPos,textColor,cap);
 }
 
 sf::Text* drawDelearText() {
-    const sf::Vector2f textPos(1800,450);
+    const sf::Vector2f textPos(dealerText.x, dealerText.y);
     const sf::Color textColor(sf::Color::White);
     const size_t cap= 90;
     return drawText("Delear", textPos, textColor,cap);
@@ -152,9 +160,30 @@ sf::CircleShape* drawCircle(const float& radius,const sf::Vector2f& circlePositi
     return circle;
 }
 
-sf::Text* drawScore(unsigned short score) {
-    const sf::Vector2f textPos(800, 450);
+sf::Text* drawPlayerScore(unsigned short score) {
+    const sf::Vector2f textPos(playerScore.x, playerScore.y);
     const sf::Color textColor(sf::Color::White);
-    const size_t cap = 60;
+    const size_t cap = 80;
     return drawText(std::to_string(score),textPos,textColor,cap);
+}
+
+sf::CircleShape* drawPlayerScoreCircle() {
+    const float radius = 50;
+    const sf::Vector2f circlePosition(playerScoreCircle.x, playerScoreCircle.y);
+    const sf::Color circleFillColor(sf::Color(0, 65, 0));
+    return drawCircle(radius, circlePosition, circleFillColor);
+}
+
+sf::Text* drawDealerScore(unsigned short score) {
+    const sf::Vector2f textPos(dealerScore.x, dealerScore.y);
+    const sf::Color textColor(sf::Color::White);
+    const size_t cap = 80;
+    return drawText(std::to_string(score),textPos,textColor,cap);
+}
+
+sf::CircleShape* drawDealerScoreCircle() {
+    const float radius = 50;
+    const sf::Vector2f circlePosition(dealerScoreCircle.x, dealerScoreCircle.y);
+    const sf::Color circleFillColor(sf::Color(0, 65, 0));
+    return drawCircle(radius, circlePosition, circleFillColor);
 }

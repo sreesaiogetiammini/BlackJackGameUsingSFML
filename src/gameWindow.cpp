@@ -20,7 +20,7 @@ using namespace std;
 
 void runGameWindow(){
     // create the window
-    sf::RenderWindow blackJackWindow(sf::VideoMode::getDesktopMode(), "BlackJack Game",sf::Style::Default);
+    sf::RenderWindow blackJackWindow(sf::VideoMode::getDesktopMode(), "BlackJack Game", sf::Style::Default);
     blackJackWindow.setFramerateLimit(60);
     
     sf::RectangleShape playRect = *drawPlayRect();
