@@ -16,6 +16,7 @@
 #include "Card.hpp"
 #include "Deck.hpp"
 #include "PlayerHand.hpp"
+#include "DealerHand.hpp"
 
 
 class Blackjack {
@@ -38,37 +39,33 @@ public:
         deck_.shuffle();
         // Alternate dealing cards between the player and dealer
         for (int i = 0; i < 2; i++) {
-            deck_.dealHand(player);
-            deck_.dealHand(dealer);
+            deck_.dealPlayer(player);
+            player.setScore(calculateScore(player.getCards()));
+            deck_.dealDealer(dealer);
+            dealer.setScore(calculateScore(dealer.getCards()));
         }
     }
     
-    // hit a card and update the score
-    void hit(PlayerHand& hand) {
-        std::string handType = "player";
-        if (hand.getClassName() == "DealerHand") {
-            handType = "dealer";
-            std::cout << " This is dealer.\n";
-        }
-        if (handType == "dealer") {
-            while (hand.getScore() < 17) {
-                deck_.dealHand(hand);
-                hand.setScore(calculateScore(hand));
-            }
-        } else {
-            deck_.dealHand(hand);
-            hand.setScore(calculateScore(hand));
+    void hitPlayer(PlayerHand& hand) {
+        deck_.dealPlayer(hand);
+        hand.setScore(calculateScore(hand.getCards()));
+    }
+    
+    void hitDealer(DealerHand& hand) {
+        while (hand.getScore() < 17) {
+            deck_.dealDealer(hand);
+            hand.setScore(calculateScore(hand.getCards()));
         }
     }
     
-    unsigned short calculateScore(const PlayerHand& hand) {
+    unsigned short calculateScore(std::vector<Card> cards) {
         std::map<std::string, int> rankToValue = {
-            {"1", 1}, {"2", 2}, {"3", 3}, {"4", 4}, {"5", 5},
+            {"2", 2}, {"3", 3}, {"4", 4}, {"5", 5},
             {"6", 6}, {"7", 7}, {"8", 8}, {"9", 9}, {"10", 10},
             {"J", 10}, {"Q", 10}, {"K", 10}, {"A", 0}
         };
         int score = 0, numA = 0;
-        for (Card card : hand.getCards()) {
+        for (Card card : cards) {
             score += rankToValue[card.getRank()];
             if (card.getRank() == "A") {
                 numA += 1;
@@ -91,6 +88,8 @@ public:
                 } else {
                     return scores[i - 1];
                 }
+            } else if (scores[i] == 21) {
+                return 21;
             }
         }
     }
@@ -107,16 +106,6 @@ public:
             return -1;
         } else {
             return 1;
-        }
-    }
-    
-    // play the game
-    void play(PlayerHand& player, DealerHand& dealer) {
-        deck_.shuffle();
-        // Alternate dealing cards between the player and dealer
-        for (int i = 0; i < 2; i++) {
-            deck_.dealHand(player);
-            deck_.dealHand(dealer);
         }
     }
 };

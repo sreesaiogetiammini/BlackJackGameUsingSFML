@@ -122,19 +122,11 @@ sf::Text* drawCard(const Card card, sf::Vector2f& cardPosition) {
     return textSf;
 }
 
-sf::RectangleShape* drawPlayerCard(sf::Vector2f& cardPos){
-    //sf::Vector2f cardPosition(700,700);
+sf::RectangleShape* drawCard(sf::Vector2f& cardPos) {
     sf::Vector2f cardPosition(cardPos);
     sf::Vector2f cardSize(400,600);
     sf::Color cardColor(sf::Color::White);
     return drawRectangle(cardPosition, cardSize, cardColor);
-}
-
-sf::RectangleShape* drawDelearCard(sf::Vector2f& cardPos){
-    //sf::Vector2f cardPosition(1800,700);
-    sf::Vector2f cardSize(400,600);
-    sf::Color cardColor(sf::Color::White);
-    return drawRectangle(cardPos, cardSize, cardColor);
 }
 
 sf::CircleShape* drawHitCircle(){

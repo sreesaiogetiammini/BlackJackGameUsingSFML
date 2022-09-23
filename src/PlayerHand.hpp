@@ -29,11 +29,6 @@ public:
         return score_;
     }
     
-    // Sort hand in ascending order
-    void sortHand() {
-        sort(cards_.begin(), cards_.end(), compareCard);
-    }
-    
     void addCard(Card& card) {
         cards_.push_back(card);
     }
@@ -48,44 +43,6 @@ public:
     void setScore(unsigned short score) {
         score_ = score;
     }
-    
-    std::string getClassName() const {
-        return "PlayerHand";
-    }
 };
-
-class DealerHand : public PlayerHand {
-private:
-    bool visible;
-    
-public:
-    DealerHand():PlayerHand() { // call parent class's constructor
-        visible = false;
-    }
-    
-    /*
-     Add a card to the dealer. The first card should be invisible.
-     If visible = true, then all cards are visible.
-     */
-    void addCard(Card& card) {
-        if (!visible && cards_.size() > 0) {
-            card.setVisible(false);
-        }
-        cards_.push_back(card);
-    }
-    
-    // make all cards visible and then sort them
-    void revealHand() {
-        for (Card card : cards_) {
-            card.setVisible(true);
-        }
-        sortHand();
-    }
-    
-    std::string getClassName() const {
-        return "DealerHand";
-    }
-};
-
 
 #endif /* Hand_hpp */

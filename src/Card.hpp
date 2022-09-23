@@ -17,8 +17,6 @@ private:
     std::string suit_;
     bool visible_;
   
-    
-    
 public:
     Card(std::string rank, std::string suit) {
         rank_ = rank;
