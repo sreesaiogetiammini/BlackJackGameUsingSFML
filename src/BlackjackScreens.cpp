@@ -81,7 +81,7 @@ void resultScreen(sf::RenderWindow& window, short winner, PlayerHand& player, De
 
 void displayCards(sf::RenderWindow& window, std::vector<Card> cards, sf::Vector2f cardPosition) {
     for(size_t i = 0; i < cards.size(); i++){
-        window.draw(*drawCard(cardPosition));
+        window.draw(*drawCardRec(cardPosition, cards[i].getVisible()));
         if(cards[i].getVisible()){
             window.draw(*drawText(cards[i].getRank(), cardPosition, sf::Color::Black, 60));
             sf::Texture cardImage;
