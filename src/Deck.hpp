@@ -39,6 +39,15 @@ public:
         return cards_;
     }
     
+    Card get(unsigned short i) const {
+        return cards_[i];
+    }
+    
+    // return the size of the left cards
+    int getSize() const {
+        return cards_.size();
+    }
+    
     void dealPlayer(PlayerHand& hand) {
         hand.addCard(cards_.front());
         cards_.erase(cards_.begin());
@@ -49,7 +58,6 @@ public:
         cards_.erase(cards_.begin());
     }
 
-    // TODO: improve shuffle methods
     void shuffle() {
         srand(time(0));
         int j;
@@ -65,7 +73,6 @@ public:
         }
         std::cout << std::endl;
     }
-    
 };
 
 #endif /* Deck_hpp */

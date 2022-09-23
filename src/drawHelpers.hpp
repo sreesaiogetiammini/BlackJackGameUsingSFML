@@ -26,5 +26,7 @@ sf::Text* drawCard(const Card card ,sf::Vector2f& cardPosition);
 sf::RectangleShape* drawCard(sf::Vector2f& cardPos);
 sf::CircleShape* drawHitCircle();
 sf::CircleShape* drawStandCircle();
-sf::CircleShape* drawCircle(const float& radius,const sf::Vector2f& circlePosition , const sf::Color& circleFillColor);
+sf::CircleShape* drawCircle(const float& radius, const sf::Vector2f& circlePosition, const sf::Color& circleFillColor);
+sf::Text* drawScore(unsigned short score);
+
 #endif /* drawHelpers_hpp */

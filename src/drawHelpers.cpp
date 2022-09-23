@@ -152,13 +152,9 @@ sf::CircleShape* drawCircle(const float& radius,const sf::Vector2f& circlePositi
     return circle;
 }
 
-
-void moveRectangle(sf::RectangleShape& rectangle)
-{
-    rectangle.move(0, 0);
-}
-
-void moveText(sf::Text& text)
-{
-    text.move(0, 0);
+sf::Text* drawScore(unsigned short score) {
+    const sf::Vector2f textPos(800, 450);
+    const sf::Color textColor(sf::Color::White);
+    const size_t cap = 60;
+    return drawText(std::to_string(score),textPos,textColor,cap);
 }

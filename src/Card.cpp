@@ -8,6 +8,4 @@
 #include "Card.hpp"
 
 
-bool compareCard(Card& a, Card& b) {
-    return a.getRank() < b.getRank();
-}
+

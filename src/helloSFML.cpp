@@ -1,11 +1,11 @@
 // Group member: Sree Sai, Yue Sun
 #include <SFML/Graphics.hpp>
 #include "gameWindow.hpp"
-#include "testBlackjack.hpp"
+#include "tests.hpp"
 
 int main()
 {
-//    testBlackjack();
-    runGameWindow();
+    tests();
+//    runGameWindow();
     return 0;
 }
