@@ -70,7 +70,7 @@ void resultScreen(sf::RenderWindow& window, short winner, PlayerHand& player, De
     
     if(winner == 1){
         window.draw(*drawText("Player Wins!", winnerPosition,  sf::Color(253, 216, 53), 400));
-    } else if(winner ==0){
+    } else if(winner == 0){
         window.draw(*drawText("Game Draw", winnerPosition,  sf::Color(253, 216, 53), 400));
     } else if(winner == -1){
         window.draw(*drawText("Dealer Wins!", winnerPosition,  sf::Color(253, 216, 53), 400));
