@@ -34,16 +34,23 @@ void gameScreen(sf::RenderWindow& window,PlayerHand& player,DealerHand& dealer) 
     window.draw(*drawPlayerScoreCircle());
     window.draw(*drawPlayerScore(player.getScore()));
     window.draw(*drawDealerScoreCircle());
+    if (dealer.getVisible()) {
+        window.draw(*drawDealerScore(dealer.getScore()));
+    }
 }
 
 void hitScreen(sf::RenderWindow& window, PlayerHand& player) {
     sf::Vector2f playerCardPosition(700,700);
     displayCards(window, player.getCards(), playerCardPosition);
+    window.draw(*drawPlayerScoreCircle());
+    window.draw(*drawPlayerScore(player.getScore()));
 }
 
 void standScreen(sf::RenderWindow& window, DealerHand& dealer) {
     sf::Vector2f dealerCardPosition(1800,700);
     displayCards(window, dealer.getCards(),dealerCardPosition);
+    window.draw(*drawDealerScoreCircle());
+    window.draw(*drawDealerScore(dealer.getScore()));
 }
 
 
@@ -56,6 +63,10 @@ void resultScreen(sf::RenderWindow& window, short winner, PlayerHand& player,Dea
     displayCards(window, player.getCards(), playerCardPosition);
     sf::Vector2f dealerCardPosition(1800,700);
     displayCards(window, dealer.getCards(), dealerCardPosition);
+    window.draw(*drawPlayerScoreCircle());
+    window.draw(*drawPlayerScore(player.getScore()));
+    window.draw(*drawDealerScoreCircle());
+    window.draw(*drawDealerScore(dealer.getScore()));
     sf::Vector2f winnerPosition(900,2);
     if(winner==1){
         window.draw(*drawText("Player Wins!", winnerPosition,  sf::Color(253, 216, 53), 400));
