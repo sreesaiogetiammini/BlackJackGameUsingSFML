@@ -5,7 +5,7 @@
 
 int main()
 {
-    tests();
-//    runGameWindow();
+//    tests();
+    runGameWindow();
     return 0;
 }

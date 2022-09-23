@@ -25,6 +25,6 @@ enum screens {
     ResultScreen
 };
 void runGameWindow();
-short verifyGameResults(sf::RenderWindow& blackJackWindow,sf::Event& event,PlayerHand& player,DealerHand& dealer,Blackjack game,screens& screen,short& winner);
+short verifyGameResults(sf::RenderWindow& blackJackWindow,sf::Event& event,PlayerHand& player,DealerHand& dealer,Blackjack& game,screens& screen,short& winner);
 #endif /* gameWindow_hpp */
 
