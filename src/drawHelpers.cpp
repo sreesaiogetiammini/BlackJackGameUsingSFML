@@ -11,7 +11,6 @@
 
 Position playerText {1000, 450};
 Position dealerText {1800, 450};
-
 Position playerScore {850, playerText.y + 10};
 Position dealerScore {2100, dealerText.y + 10};
 Position playerScoreCircle {playerScore.x - 30, playerScore.y + 10};
