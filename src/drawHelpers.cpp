@@ -34,7 +34,7 @@ std::unique_ptr<sf::Text> drawText(const std::string& text,const sf::Vector2f& t
 {
 
     sf::Font* introFont = new sf::Font;
-    if(!introFont->loadFromFile("fonts/IntroFont.otf")){};
+    if(!introFont->loadFromFile("../fonts/IntroFont.otf")){};
     std::unique_ptr<sf::Text> textSf(new sf::Text);
     textSf->setColor(textColor);
     textSf->setPosition(textPosition);
