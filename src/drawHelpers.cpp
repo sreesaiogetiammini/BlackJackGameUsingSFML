@@ -17,6 +17,11 @@ Position dealerScore {2100, dealerText.y + 10};
 Position playerScoreCircle {playerScore.x - 30, playerScore.y + 10};
 Position dealerScoreCircle {dealerScore.x - 30, dealerScore.y + 10};
 
+sf::Font introFont;
+void initFont(){
+    introFont.loadFromFile("../fonts/IntroFont.otf");
+}
+
 bool checkMousePosition(sf::RenderWindow& window, sf::Shape& shape) {
     sf::Vector2i mouse = sf::Mouse::getPosition(window);//Get mouse position
     window.mapPixelToCoords(mouse);
@@ -32,17 +37,12 @@ void drawBackground(sf::RenderWindow& window) {
 
 std::unique_ptr<sf::Text> drawText(const std::string& text,const sf::Vector2f& textPosition,const sf::Color& textColor ,const size_t& characterSize)
 {
-
-    sf::Font* introFont = new sf::Font;
-    if(!introFont->loadFromFile("../fonts/IntroFont.otf")){};
     std::unique_ptr<sf::Text> textSf(new sf::Text);
     textSf->setColor(textColor);
     textSf->setPosition(textPosition);
-    textSf->setFont(*introFont);
+    textSf->setFont(introFont);
     textSf->setString(text);
     textSf->setCharacterSize(characterSize);
-    //delete introFont;
-    introFont = nullptr;
     return textSf;
 }
 

@@ -27,6 +27,7 @@ void runGameWindow(){
     PlayerHand player;
     DealerHand dealer;
     screens screen = IntroScreen;
+    initFont();
     short winner ;
     while (blackJackWindow.isOpen()) {
         // check all the window's events that were triggered since the last iteration of the loop

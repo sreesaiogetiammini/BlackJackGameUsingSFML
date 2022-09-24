@@ -17,7 +17,7 @@ struct Position {
 
 bool checkMousePosition(sf::RenderWindow& window, sf::Shape& text);
 void drawBackground(sf::RenderWindow& window);
-
+void initFont();
 std::unique_ptr<sf::Text> drawText(const std::string& text,const sf::Vector2f& textPosition,const sf::Color& textColor ,const size_t& characterSize);
 std::unique_ptr<sf::Text> drawGameTitle();
 std::unique_ptr<sf::Text> drawPlayerText();
