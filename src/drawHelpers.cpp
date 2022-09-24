@@ -19,7 +19,7 @@ Position dealerScoreCircle {dealerScore.x - 30, dealerScore.y + 10};
 
 sf::Font introFont;
 void initFont(){
-    introFont.loadFromFile("../fonts/IntroFont.otf");
+    introFont.loadFromFile("fonts/IntroFont.otf");
 }
 
 bool checkMousePosition(sf::RenderWindow& window, sf::Shape& shape) {
@@ -119,14 +119,9 @@ std::unique_ptr<sf::Text> drawStandText(){
 }
 
 std::unique_ptr<sf::Text> drawCardText(const Card card, sf::Vector2f& cardPosition) {
-    sf::Font* introFont;
-    introFont = new sf::Font;
-    if(!introFont->loadFromFile("Roboto-Bold.ttf")){
-        std::cout << "cannot find Roboto-Bold.ttf\n";
-    }
     std::unique_ptr<sf::Text> textSf(new sf::Text);
     textSf->setPosition(cardPosition);
-    textSf->setFont(*introFont);
+    textSf->setFont(introFont);
     textSf->setString(card.getRank());
     textSf->setCharacterSize(10);
     return textSf;

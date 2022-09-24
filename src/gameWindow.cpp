@@ -20,7 +20,7 @@ void runGameWindow(){
     sf::RectangleShape quitRect = *drawQuitRect();
     
     sf::SoundBuffer buffer;
-    buffer.loadFromFile("../sounds/deal.wav");
+    buffer.loadFromFile("sounds/deal.wav");
     sf::Sound sound(buffer);
     
     Blackjack game;
