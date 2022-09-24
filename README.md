@@ -1,12 +1,14 @@
 # Blackjack 
 Contributors: Yue Sun, Shree Sai Ogetiammini
 
-## Features
+## Introduction
+
+Blackjack
 
 ## Tools
 
 - language: C++
-- SFML
+- [SFML](https://www.sfml-dev.org)
 - CMake
 
 ## Run it locally

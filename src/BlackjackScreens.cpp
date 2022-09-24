@@ -87,7 +87,7 @@ void displayCards(sf::RenderWindow& window, std::vector<Card> cards, sf::Vector2
         if(cards[i].getVisible()){
             window.draw(*drawText(cards[i].getRank(), cardPosition, sf::Color::Black, 60));
             sf::Texture cardImage;
-            if(cardImage.loadFromFile("Images/"+cards[i].getSuit()+".png")){
+            if(cardImage.loadFromFile("../images/"+cards[i].getSuit()+".png")){
                 sf::Sprite imageSprite;
                 imageSprite.setTexture(cardImage,true);
                 cardPosition.y += 250;

@@ -19,7 +19,7 @@ Position dealerScoreCircle {dealerScore.x - 30, dealerScore.y + 10};
 
 sf::Font introFont;
 void initFont(){
-    introFont.loadFromFile("fonts/IntroFont.otf");
+    introFont.loadFromFile("../fonts/IntroFont.otf");
 }
 
 bool checkMousePosition(sf::RenderWindow& window, sf::Shape& shape) {
