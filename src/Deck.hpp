@@ -42,7 +42,7 @@ public:
         return cards_[i];
     }
     
-    // return the size of the left cards
+    // return the size of the cards
     int getSize() const {
         return cards_.size();
     }

@@ -35,14 +35,7 @@ protected:
             return score;
         }
         score += numA;
-        for (int i = 0; i < numA; i++) {
-            score += 10;
-            if (score == 21) {
-                return score;
-            } else if (score > 21) {
-                return score - 10;
-            }
-        }
+        score += std::min((21 - score) / 10, numA) * 10;
         return score;
     }
     
