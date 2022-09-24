@@ -30,56 +30,59 @@ void drawBackground(sf::RenderWindow& window) {
     window.draw(*drawDelearText());
 }
 
-sf::Text* drawText(const std::string& text,const sf::Vector2f& textPosition,const sf::Color& textColor ,const size_t& characterSize) {
-    sf::Font* introFont;
-    introFont = new sf::Font;
+std::unique_ptr<sf::Text> drawText(const std::string& text,const sf::Vector2f& textPosition,const sf::Color& textColor ,const size_t& characterSize)
+{
+
+    sf::Font* introFont = new sf::Font;
     if(!introFont->loadFromFile("fonts/IntroFont.otf")){};
-    sf::Text* textSf;
-    textSf = new sf::Text;
+    std::unique_ptr<sf::Text> textSf(new sf::Text);
     textSf->setColor(textColor);
     textSf->setPosition(textPosition);
     textSf->setFont(*introFont);
     textSf->setString(text);
     textSf->setCharacterSize(characterSize);
+    //delete introFont;
+    introFont = nullptr;
     return textSf;
 }
 
-sf::Text* drawGameTitle(){
+std::unique_ptr<sf::Text> drawGameTitle(){
     sf::Vector2f textPos(900,2);
     sf::Color textColor(145,0,0);
     return drawText("BlackJack", textPos, textColor,400);
 }
 
-sf::Text* drawPlayerText() {
+std::unique_ptr<sf::Text> drawPlayerText() {
     const sf::Vector2f textPos(playerText.x, playerText.y);
     const sf::Color textColor(sf::Color::White);
     const size_t cap = 90;
     return drawText("Player",textPos,textColor,cap);
 }
 
-sf::Text* drawDelearText() {
+std::unique_ptr<sf::Text> drawDelearText() {
     const sf::Vector2f textPos(dealerText.x, dealerText.y);
     const sf::Color textColor(sf::Color::White);
     const size_t cap= 90;
     return drawText("Delear", textPos, textColor,cap);
 }
 
-sf::Text* drawPlayText() {
+std::unique_ptr<sf::Text> drawPlayText() {
     const sf::Vector2f textPos(1000,950);
     const sf::Color textColor(sf::Color::White);
     const size_t cap= 90;
     return drawText(" PLAY ",textPos,textColor,cap);
 }
 
-sf::Text* drawQuitText(){
+std::unique_ptr<sf::Text> drawQuitText(){
     const sf::Vector2f textPos(1800,950);
     const sf::Color textColor(sf::Color::White);
     const size_t cap= 90;
     return drawText(" Quit ", textPos, textColor,cap);
 }
 
-sf::RectangleShape* drawRectangle(const sf::Vector2f& rectanglePosition, const sf::Vector2f& rectangularSize, const sf::Color& rectangleFillColor){
-    sf::RectangleShape* rectangle = new sf::RectangleShape ;
+std::unique_ptr<sf::RectangleShape> drawRectangle(const sf::Vector2f& rectanglePosition, const sf::Vector2f& rectangularSize, const sf::Color& rectangleFillColor){
+    
+    std::unique_ptr<sf::RectangleShape> rectangle(new sf::RectangleShape);
     rectangle->setPosition(rectanglePosition);
     rectangle->setOutlineThickness(6);
     rectangle->setSize(rectangularSize);
@@ -87,42 +90,41 @@ sf::RectangleShape* drawRectangle(const sf::Vector2f& rectanglePosition, const s
     return rectangle;
 }
 
-sf::RectangleShape* drawPlayRect(){
+std::unique_ptr<sf::RectangleShape> drawPlayRect(){
     sf::Vector2f cardPosition(1000,970);
     sf::Vector2f cardSize(220,75);
     sf::Color cardColor(sf::Color :: Black);
     return drawRectangle(cardPosition, cardSize, cardColor);
 }
 
-sf::RectangleShape* drawQuitRect(){
+std::unique_ptr<sf::RectangleShape> drawQuitRect(){
     sf::Vector2f cardPosition(1800,970);
     sf::Vector2f cardSize(220,75);
     sf::Color cardColor(sf::Color :: Black);
     return drawRectangle(cardPosition, cardSize, cardColor);
 }
 
-sf::Text* drawHitText(){
+std::unique_ptr<sf::Text> drawHitText(){
     const sf::Vector2f textPos(1375,800);
     const sf::Color textColor(sf::Color::White);
     const size_t cap = 60;
     return drawText(" Press H to Hit ",textPos,textColor,cap);
 }
 
-sf::Text* drawStandText(){
+std::unique_ptr<sf::Text> drawStandText(){
     const sf::Vector2f textPos(1350,1150);
     const sf::Color textColor(sf::Color::White);
     const size_t cap = 60;
     return drawText(" Press S to Stand ", textPos, textColor,cap);
 }
 
-sf::Text* drawCardText(const Card card, sf::Vector2f& cardPosition) {
+std::unique_ptr<sf::Text> drawCardText(const Card card, sf::Vector2f& cardPosition) {
     sf::Font* introFont;
     introFont = new sf::Font;
     if(!introFont->loadFromFile("Roboto-Bold.ttf")){
         std::cout << "cannot find Roboto-Bold.ttf\n";
     }
-    sf::Text* textSf;
-    textSf = new sf::Text;
+    std::unique_ptr<sf::Text> textSf(new sf::Text);
     textSf->setPosition(cardPosition);
     textSf->setFont(*introFont);
     textSf->setString(card.getRank());
@@ -130,7 +132,7 @@ sf::Text* drawCardText(const Card card, sf::Vector2f& cardPosition) {
     return textSf;
 }
 
-sf::RectangleShape* drawCardRec(sf::Vector2f& cardPos, bool visible) {
+std::unique_ptr<sf::RectangleShape> drawCardRec(sf::Vector2f& cardPos, bool visible) {
     sf::Vector2f cardPosition(cardPos);
     sf::Vector2f cardSize(400,600);
     sf::Color cardColor;
@@ -142,22 +144,22 @@ sf::RectangleShape* drawCardRec(sf::Vector2f& cardPos, bool visible) {
     return drawRectangle(cardPosition, cardSize, cardColor);
 }
 
-sf::CircleShape* drawHitCircle(){
+std::unique_ptr<sf::CircleShape> drawHitCircle(){
     const float radius = 150;
     const sf::Vector2f circlePosition(1350,700);
     const sf::Color circleFillColor(sf::Color :: Black);
     return drawCircle(radius, circlePosition, circleFillColor);
 };
 
-sf::CircleShape* drawStandCircle(){
+std::unique_ptr<sf::CircleShape> drawStandCircle(){
     const float radius = 150;
     const sf::Vector2f circlePosition(1350,1050);
     const sf::Color circleFillColor(sf::Color :: Black);
     return drawCircle(radius, circlePosition, circleFillColor);
 };
 
-sf::CircleShape* drawCircle(const float& radius,const sf::Vector2f& circlePosition , const sf::Color& circleFillColor){
-    sf::CircleShape* circle = new sf::CircleShape;
+std::unique_ptr<sf::CircleShape> drawCircle(const float& radius,const sf::Vector2f& circlePosition , const sf::Color& circleFillColor){
+    std::unique_ptr<sf::CircleShape> circle(new sf::CircleShape);
     circle->setRadius(radius);
     circle->setPosition(circlePosition);
     circle->setOutlineThickness(3);
@@ -165,28 +167,28 @@ sf::CircleShape* drawCircle(const float& radius,const sf::Vector2f& circlePositi
     return circle;
 }
 
-sf::Text* drawPlayerScore(unsigned short score) {
+std::unique_ptr<sf::Text> drawPlayerScore(unsigned short score) {
     const sf::Vector2f textPos(playerScore.x, playerScore.y);
     const sf::Color textColor(sf::Color::White);
     const size_t cap = 80;
     return drawText(std::to_string(score),textPos,textColor,cap);
 }
 
-sf::CircleShape* drawPlayerScoreCircle() {
+std::unique_ptr<sf::CircleShape> drawPlayerScoreCircle() {
     const float radius = 50;
     const sf::Vector2f circlePosition(playerScoreCircle.x, playerScoreCircle.y);
     const sf::Color circleFillColor(sf::Color(0, 65, 0));
     return drawCircle(radius, circlePosition, circleFillColor);
 }
 
-sf::Text* drawDealerScore(unsigned short score) {
+std::unique_ptr<sf::Text> drawDealerScore(unsigned short score) {
     const sf::Vector2f textPos(dealerScore.x, dealerScore.y);
     const sf::Color textColor(sf::Color::White);
     const size_t cap = 80;
     return drawText(std::to_string(score),textPos,textColor,cap);
 }
 
-sf::CircleShape* drawDealerScoreCircle() {
+std::unique_ptr<sf::CircleShape> drawDealerScoreCircle() {
     const float radius = 50;
     const sf::Vector2f circlePosition(dealerScoreCircle.x, dealerScoreCircle.y);
     const sf::Color circleFillColor(sf::Color(0, 65, 0));
