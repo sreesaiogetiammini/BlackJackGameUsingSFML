@@ -1,5 +1,5 @@
 # Blackjack Game
-Contributors: [Yue Sun](https://github.com/Sonia-96), [Sree Sai Ogeti ]([https://github.com/Sonia-96](https://github.com/sreesaiogetiammini))
+Contributors: [Yue Sun](https://github.com/Sonia-96), [Sree Sai Ogeti ](https://github.com/sreesaiogetiammini)
 
 ## Introduction
 
